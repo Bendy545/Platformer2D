@@ -9,7 +9,7 @@ import java.io.InputStream;
 public class GamePanel extends JPanel {
     private MouseInputs mouseInputs;
     private float xDelta = 100, yDelta = 100;
-    private BufferedImage img;
+    private BufferedImage img, subImg;
 
 
     public GamePanel() {
@@ -52,7 +52,9 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.drawImage(img.getSubimage(0,0,32,32), 0, 0, null);
+        subImg = img.getSubimage(32,96,32,32);
+        g.drawImage(subImg, (int)xDelta, (int)yDelta,96,96, null);
+
     }
 
     private void setPanelSize() {
