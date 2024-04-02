@@ -1,19 +1,22 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class GamePanel extends JPanel {
     private MouseInputs mouseInputs;
-    private int frames = 0;
     private float xDelta = 100, yDelta = 100;
-
+    private BufferedImage img;
 
 
     public GamePanel() {
 
 
         mouseInputs = new MouseInputs(this);
+        importImg();
         setPanelSize();
         addKeyListener(new KeyboardInputs(this));
         addMouseListener(mouseInputs);
@@ -21,8 +24,18 @@ public class GamePanel extends JPanel {
 
         }
 
+    private void importImg() {
+        InputStream is = getClass().getResourceAsStream("/Player_sprites.png");
 
-        public void changeXDelta(int value) {
+        try {
+            img = ImageIO.read(is);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public void changeXDelta(int value) {
         this.xDelta += value;
 
     }
@@ -39,6 +52,7 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        g.drawImage(img.getSubimage(0,0,32,32), 0, 0, null);
     }
 
     private void setPanelSize() {
