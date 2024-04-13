@@ -1,5 +1,7 @@
 package objects;
 
+import utilz.Constants;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -50,18 +52,33 @@ public class Player extends Entity{
     private void setAnimation() {
 
         int startAni = playerAction;
-        if (moving) {
-            playerAction = RUNNINGRIGHT;
+        if (attacking) {
+            if (left) {
+                playerAction = ATTACKLEFT;
+            } else if (right) {
+                playerAction = ATTACKRIGHT;
+            }
+        } else if (moving) {
+            if (left) {
+                playerAction = RUNNINGLEFT;
+            } else if (right) {
+                playerAction = RUNNINGRIGHT;
+            }
         } else {
             playerAction = IDLE;
         }
-        if (attacking) {
-            playerAction = ATTACKRIGHT;
-        }
+
         if (startAni != playerAction) {
             resetAniTick();
         }
+        if (attacking) {
+            left = false;
+            right = false;
+            up = false;
+            down = false;
+        }
     }
+
 
     private void resetAniTick() {
         animTick = 0;
