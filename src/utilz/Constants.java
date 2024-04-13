@@ -14,7 +14,7 @@ public class Constants {
         public static final int IDLE = 0;
         public static final int JUMP = 2;
         public static final int ATTACKRIGHT = 3;
-        public static final int ATTACLEFT = 6;
+        public static final int ATTACKLEFT = 6;
         public static final int FALLING = 5;
 
         public static int GetSpriteAmount(int player_action) {
@@ -31,7 +31,7 @@ public class Constants {
                     return 3;
                 case FALLING:
                     return 2;
-                case ATTACLEFT:
+                case ATTACKLEFT:
                     return 2;
                 default:
                     return 1;
