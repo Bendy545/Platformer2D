@@ -1,6 +1,7 @@
 package objects;
 
 import utilz.Constants;
+import utilz.SaveLoad;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -107,26 +108,13 @@ public class Player extends Entity{
     }
 
     private void loadAnimations() {
-
-        InputStream is = getClass().getResourceAsStream("/PlayerSpriteSheet2.png");
-
-        try {
-            BufferedImage img = ImageIO.read(is);
+            BufferedImage img = SaveLoad.GetSpriteAtlas(SaveLoad.PLAYER_ATLAS);
             animations = new BufferedImage[7][3];
             for (int j = 0; j < animations.length; j++) {
                 for (int i = 0; i < animations[j].length; i++) {
                     animations[j][i] = img.getSubimage(i * 32, j * 32, 32, 32);
                 }
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 
     public void resetDirBolleans() {

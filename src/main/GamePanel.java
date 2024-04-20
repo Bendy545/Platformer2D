@@ -1,11 +1,10 @@
-import javax.imageio.ImageIO;
+package main;
+
+import main.Game;
+import Inputs.MouseInputs;
+import Inputs.KeyboardInputs;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import static utilz.Constants.PlayerConstants.*;
-import static utilz.Constants.Directions.*;
 
 public class GamePanel extends JPanel {
 
@@ -23,8 +22,9 @@ public class GamePanel extends JPanel {
     }
 
     private void setPanelSize() {
-        Dimension size = new Dimension(1280, 800);
+        Dimension size = new Dimension(Game.GAME_WIDTH, Game.GAME_HEIGHT);
         setPreferredSize(size);
+        System.out.println("size: " + Game.GAME_WIDTH + " : " + Game.GAME_HEIGHT);
     }
 
     public void updateGame() {
