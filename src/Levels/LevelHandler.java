@@ -19,10 +19,10 @@ public class LevelHandler {
 
     private void importLevelSprite() {
         BufferedImage img = SaveLoad.GetSpriteAtlas(SaveLoad.LEVEL_ATLAS);
-        levelSprite = new BufferedImage[4];
-        for (int i = 0; i < 2; i++) {
-            for (int g = 0; g < 2; g++) {
-                int index = g * 2 + i;
+        levelSprite = new BufferedImage[48];
+        for (int i = 0; i < 4; i++) {
+            for (int g = 0; g < 12; g++) {
+                int index = i * 12 + g;
                 levelSprite[index] = img.getSubimage(g * 32, i * 32, 32, 32);
             }
         }
