@@ -32,9 +32,10 @@ public class Game implements Runnable{
     }
 
     private void initClasses() {
-
-        player = new Player(150, 150);
         levelHandler = new LevelHandler(this);
+        player = new Player(200, 200, (int) (32 * SCALE), (int) (32 * SCALE));
+        player.loadlvlData(levelHandler.getCurrentLevel().getLvlData());
+
     }
 
     private void startGameLoop() {
@@ -43,8 +44,8 @@ public class Game implements Runnable{
     }
 
     public void update() {
-        player.update();
         levelHandler.update();
+        player.update();
     }
 
     public void render(Graphics g) {
