@@ -11,7 +11,7 @@ import java.io.InputStream;
 public class SaveLoad {
 
     public static final String PLAYER_ATLAS = "PlayerSpriteSheet2.png";
-    public static final String LEVEL_ATLAS = "LevelSprite2.png";
+    public static final String LEVEL_ATLAS = "Textures.png";
     public static final String LEVEL_ONE_DATA = "LevelONE.png";
 
     public static BufferedImage GetSpriteAtlas(String fileName) {
@@ -40,7 +40,7 @@ public class SaveLoad {
             for (int i = 0; i < img.getWidth(); i++) {
                 Color color = new Color(img.getRGB(i,j));
                 int value = color.getRed();
-                if (value >= 48)
+                if (value >= 10)
                     value= 0;
                     lvlData[j][i] = value;
             }
