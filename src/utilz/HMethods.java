@@ -2,6 +2,8 @@ package utilz;
 
 import main.Game;
 
+import java.awt.geom.Rectangle2D;
+
 public class HMethods {
 
     public static boolean CanMoveHere(float x, float y, float width, float height, int[][] lvlData) {
@@ -28,5 +30,36 @@ public class HMethods {
         if (value >= 10 || value < 0 || value != 4)
             return true;
         return false;
+    }
+
+    public static float GetWallEntity(Rectangle2D.Float hitbox, float xSpeed) {
+        int currentTile = (int)(hitbox.x / Game.TILES_SIZE);
+        if (xSpeed > 0) {
+            int tileXPos = currentTile * Game.TILES_SIZE;
+            int xOffset = (int)(Game.TILES_SIZE - hitbox.width);
+            return tileXPos + xOffset - 1;
+        }else {
+            return currentTile * Game.TILES_SIZE;
+        }
+    }
+
+    public static boolean IsOnFloor(Rectangle2D.Float hitbox, int[][] lvlData) {
+        if (!IsSolid(hitbox.x, hitbox.y + hitbox.height + 1, lvlData)) {
+            if (!IsSolid(hitbox.x + hitbox.width, hitbox.y + hitbox.height + 1, lvlData)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static float GetYPosEntity(Rectangle2D.Float hitbox, float airTime) {
+        int currentTile = (int)(hitbox.y / Game.TILES_SIZE);
+        if (airTime > 0) {
+            int tileYPos = currentTile * Game.TILES_SIZE;
+            int yOffset = (int)(Game.TILES_SIZE - hitbox.height);
+            return tileYPos + yOffset - 1;
+        } else {
+            return currentTile * Game.TILES_SIZE;
+        }
     }
 }
