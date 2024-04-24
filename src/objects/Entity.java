@@ -1,34 +1,36 @@
 package objects;
 
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 
 public abstract class Entity {
 
     protected float x,y;
     protected int width, height;
-    protected Rectangle hitBox;
+    protected Rectangle2D.Float hitBox;
     public Entity(float x, float y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        initHitbox();
     }
 
     protected void drawHitbox(Graphics g) {
         g.setColor(Color.BLUE);
-        g.drawRect(hitBox.x,hitBox.y,hitBox.width, hitBox.height);
+        g.drawRect((int)hitBox.x,(int)hitBox.y,(int) hitBox.width,(int)hitBox.height);
     }
 
-    private void initHitbox() {
-        hitBox = new Rectangle((int) x, (int) y, width, height);
+    protected void initHitbox(float x, float y, float width, float height) {
+        hitBox = new Rectangle2D.Float(x,y, width, height);
     }
-
+    /*
     protected void updateHitbox() {
         hitBox.x = (int) x;
         hitBox.y = (int) y;
     }
-    public Rectangle getHitBox() {
+
+     */
+    public Rectangle2D.Float getHitBox() {
         return hitBox;
     }
 }
