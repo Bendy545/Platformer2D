@@ -14,6 +14,7 @@ public class SaveLoad {
     public static final String LEVEL_ATLAS = "Textures.png";
     public static final String LEVEL_ONE_DATA = "LevelONE.png";
     public static final String MENU_BUTTONS = "Buttons3.png";
+    public static final String MENU_BACKGROUND = "MenuBackGround.png";
 
     public static BufferedImage GetSpriteAtlas(String fileName) {
         BufferedImage img = null;
