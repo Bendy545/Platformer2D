@@ -1,21 +1,15 @@
 package objects;
 
-import main.Game;
-import utilz.Constants;
-import utilz.SaveLoad;
+import gameClasses.Game;
+import utilize.SaveLoad;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 
-import static utilz.Constants.Directions.*;
-import static utilz.Constants.Directions.DOWN;
-import static utilz.Constants.PlayerConstants.*;
-import static utilz.HMethods.*;
+import static utilize.Animations.PlayerConstants.*;
+import static utilize.MethodsForMoving.*;
 
-public class Player extends Entity{
+public class Player extends Entity {
 
     private float gravity = 0.04f * Game.SCALE;
     private float airTime = 0f;
@@ -31,10 +25,11 @@ public class Player extends Entity{
     private int[][] lvlData;
     private float xDrawOffset = 10 * Game.SCALE;
     private float yDrawOffset = 1 * Game.SCALE;
+
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
-        initHitbox(x,y,16*Game.SCALE, 31*Game.SCALE);
+        initHitbox(x, y, 16 * Game.SCALE, 31 * Game.SCALE);
     }
 
     public void update() {
@@ -45,8 +40,9 @@ public class Player extends Entity{
     }
 
     public void render(Graphics g) {
-        g.drawImage(animations[playerAction][animIndex], (int)(hitBox.x - xDrawOffset), (int)(hitBox.y - yDrawOffset),width,height, null);
+        g.drawImage(animations[playerAction][animIndex], (int) (hitBox.x - xDrawOffset), (int) (hitBox.y - yDrawOffset), width, height, null);
     }
+
     private void updateAnimationTick() {
 
         animTick++;
@@ -60,6 +56,7 @@ public class Player extends Entity{
         }
 
     }
+
     private void setAnimation() {
 
         int startAni = playerAction;
@@ -69,11 +66,17 @@ public class Player extends Entity{
             } else if (right) {
                 playerAction = ATTACKRIGHT;
             }
+        } else if (inAir) {
+            if (airTime < 0) {
+                playerAction = JUMP;
+            }
         } else if (moving) {
             if (left) {
                 playerAction = RUNNINGLEFT;
             } else if (right) {
                 playerAction = RUNNINGRIGHT;
+            } else {
+                playerAction = IDLE;
             }
         } else {
             playerAction = IDLE;
@@ -88,11 +91,6 @@ public class Player extends Entity{
             up = false;
             down = false;
         }
-        if (inAir) {
-            if (airTime <0) {
-                playerAction = JUMP;
-            }
-        }
     }
 
 
@@ -104,11 +102,12 @@ public class Player extends Entity{
     private void updatePos() {
 
         moving = false;
-        if (jump) {
+
+        if (jump && !inAir)
             jump();
-        }
-        if (!left && !right && !inAir)
-            return;
+
+     //   if (!left && !right && !inAir)
+      //      return;
 
         float xSpeed = 0;
 
@@ -117,12 +116,29 @@ public class Player extends Entity{
 
         if(right)
             xSpeed += playerSpeed;
+
         if (!inAir) {
             if (!IsOnFloor(hitBox,lvlData)) {
                 inAir = true;
             }
         }
+        if (inAir) {
+            hitBox.y += airTime;
+            airTime += gravity;
+            updateXPos(xSpeed);
 
+            if (!IsOnFloor(hitBox, lvlData)) {
+                moving = true;
+                return;
+            } else {
+                hitBox.y = GetYPosEntity(hitBox, airTime);
+                if (airTime > 0)
+                resetInAir();
+            }
+        }
+        updateXPos(xSpeed);
+        moving = true;
+/*
         if (inAir) {
             if (CanMoveHere(hitBox.x, hitBox.y + airTime, hitBox.width, hitBox.height, lvlData)) {
                 hitBox.y += airTime;
@@ -130,23 +146,22 @@ public class Player extends Entity{
                 updateXPos(xSpeed);
             } else {
                 hitBox.y = GetYPosEntity(hitBox, airTime);
-                if (airTime > 0) {
+                if (airTime > 0)
                     resetInAir();
-                } else {
+                else
                     airTime = fallSpeedAfterCollision;
-                }
                 updateXPos(xSpeed);
             }
-        }else {
+        }else
             updateXPos(xSpeed);
-        }
         moving = true;
+
+ */
     }
 
     private void jump() {
-        if (inAir) {
+        if (inAir)
             return;
-        }
         inAir = true;
         airTime = jumpSpeed;
     }

@@ -1,6 +1,6 @@
-package Levels;
-import main.Game;
-import utilz.SaveLoad;
+package main;
+import gameClasses.Game;
+import utilize.SaveLoad;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
