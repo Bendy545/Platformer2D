@@ -1,5 +1,6 @@
-package main;
+package levelClasses;
 import gameClasses.Game;
+import levelClasses.Level;
 import utilize.SaveLoad;
 
 import java.awt.*;

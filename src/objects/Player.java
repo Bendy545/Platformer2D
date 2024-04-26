@@ -29,7 +29,7 @@ public class Player extends Entity {
     public Player(float x, float y, int width, int height) {
         super(x, y, width, height);
         loadAnimations();
-        initHitbox(x, y, (int)(16 * Game.SCALE), (int)(31 * Game.SCALE));
+        initHitbox(x, y, (int)(16 * Game.SCALE), (int)(30 * Game.SCALE));
     }
 
     public void update() {
@@ -106,9 +106,6 @@ public class Player extends Entity {
         if (jump && !inAir)
             jump();
 
-     //   if (!left && !right && !inAir)
-      //      return;
-
         float xSpeed = 0;
 
         if (left)
@@ -122,23 +119,7 @@ public class Player extends Entity {
                 inAir = true;
             }
         }
-        if (inAir) {
-            hitBox.y += airTime;
-            airTime += gravity;
-            updateXPos(xSpeed);
 
-            if (!IsOnFloor(hitBox, lvlData)) {
-                moving = true;
-                return;
-            } else {
-                hitBox.y = GetYPosEntity(hitBox, airTime);
-                if (airTime > 0)
-                resetInAir();
-            }
-        }
-        updateXPos(xSpeed);
-        moving = true;
-/*
         if (inAir) {
             if (CanMoveHere(hitBox.x, hitBox.y + airTime, hitBox.width, hitBox.height, lvlData)) {
                 hitBox.y += airTime;
@@ -156,7 +137,7 @@ public class Player extends Entity {
             updateXPos(xSpeed);
         moving = true;
 
- */
+
     }
 
     private void jump() {

@@ -1,9 +1,9 @@
 package MenuClasses;
 
 import gameClasses.Game;
-import main.GameState;
-import main.State;
-import main.StateMethods;
+import stateOfGame.GameState;
+import stateOfGame.State;
+import stateOfGame.StateMethods;
 import utilize.SaveLoad;
 
 import java.awt.*;

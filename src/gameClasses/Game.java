@@ -3,9 +3,9 @@ package gameClasses;
 
 
 
-import main.GameState;
+import stateOfGame.GameState;
 import MenuClasses.Menu;
-import main.Playing;
+import stateOfGame.Playing;
 
 import java.awt.*;
 
@@ -20,7 +20,7 @@ public class Game implements Runnable{
     private Playing playing;
     private Menu menu;
     public final static int TILES_DEFAULT_SIZE = 32;
-    public final static float SCALE = 1.5f;
+    public final static float SCALE = 1.8f;
     public final static int TILES_WIDTH = 26;
     public final static int TILES_HEIGHt = 14;
     public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
@@ -113,6 +113,8 @@ public class Game implements Runnable{
             }
         }
     }
+
+
 
     public void windowFocusLost() {
         if (GameState.state == GameState.PLAYING) {

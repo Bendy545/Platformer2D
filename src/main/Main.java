@@ -1,3 +1,5 @@
+package main;
+
 import gameClasses.Game;
 
 public class Main {

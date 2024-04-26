@@ -1,4 +1,4 @@
-package main;
+package levelClasses;
 
 public class Level {
     private int[][] lvlData;

@@ -1,4 +1,4 @@
-package main;
+package stateOfGame;
 
 import MenuClasses.MenuButtons;
 import gameClasses.Game;

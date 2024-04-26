@@ -1,5 +1,5 @@
 package MenuClasses;
-import main.GameState;
+import stateOfGame.GameState;
 import utilize.SaveLoad;
 import static utilize.Animations.UI.Buttons.*;
 

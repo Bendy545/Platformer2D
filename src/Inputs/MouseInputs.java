@@ -1,8 +1,7 @@
 package Inputs;
 
-import MenuClasses.MenuButtons;
 import gameClasses.GamePanel;
-import main.GameState;
+import stateOfGame.GameState;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

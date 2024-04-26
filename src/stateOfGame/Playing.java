@@ -1,13 +1,14 @@
-package main;
+package stateOfGame;
 
 import gameClasses.Game;
+import levelClasses.LevelHandler;
 import objects.Player;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class Playing extends State implements StateMethods{
+public class Playing extends State implements StateMethods {
     private Player player;
     private LevelHandler levelHandler;
 
