@@ -4,7 +4,7 @@ import gameClasses.Game;
 
 import java.awt.geom.Rectangle2D;
 
-public class MethodsForMoving {
+public class MethodsForCollisionDetection {
 
     public static boolean CanMoveHere(float x, float y, float width, float height, int[][] lvlData) {
         if (!IsSolid(x,y, lvlData))
@@ -27,7 +27,7 @@ public class MethodsForMoving {
 
         int value = lvlData[(int) yIndex][(int) xIndex];
 
-        if (value >= 10 || value < 0 || value != 4)
+        if (value >= 14 || value < 0 || value != 5)
             return true;
         return false;
     }

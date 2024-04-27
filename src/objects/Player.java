@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static utilize.Animations.PlayerConstants.*;
-import static utilize.MethodsForMoving.*;
+import static utilize.MethodsForCollisionDetection.*;
 
 public class Player extends Entity {
 
