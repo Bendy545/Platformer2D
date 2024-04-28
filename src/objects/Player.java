@@ -1,6 +1,7 @@
 package objects;
 
 import gameClasses.Game;
+import stateOfGame.GameState;
 import utilize.SaveLoad;
 
 import java.awt.*;
@@ -136,10 +137,7 @@ public class Player extends Entity {
         }else
             updateXPos(xSpeed);
         moving = true;
-
-
     }
-
     private void jump() {
         if (inAir)
             return;

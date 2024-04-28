@@ -6,6 +6,7 @@ import java.awt.geom.Rectangle2D;
 
 public class MethodsForCollisionDetection {
 
+
     public static boolean CanMoveHere(float x, float y, float width, float height, int[][] lvlData) {
         if (!IsSolid(x,y, lvlData))
             if (!IsSolid(x + width, y + height, lvlData))
@@ -27,7 +28,7 @@ public class MethodsForCollisionDetection {
 
         int value = lvlData[(int) yIndex][(int) xIndex];
 
-        if (value >= 14 || value < 0 || value != 5)
+        if (value >= 10 || value < 0 || value != 4)
             return true;
         return false;
     }
@@ -60,4 +61,5 @@ public class MethodsForCollisionDetection {
         } else
             return currentTile * Game.TILES_SIZE;
     }
+
 }

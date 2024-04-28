@@ -6,6 +6,7 @@ package gameClasses;
 import stateOfGame.GameState;
 import MenuClasses.Menu;
 import stateOfGame.Playing;
+import utilize.MethodsForCollisionDetection;
 
 import java.awt.*;
 
@@ -20,7 +21,7 @@ public class Game implements Runnable{
     private Playing playing;
     private Menu menu;
     public final static int TILES_DEFAULT_SIZE = 32;
-    public final static float SCALE = 1.8f;
+    public final static float SCALE = 1.0f;
     public final static int TILES_WIDTH = 26;
     public final static int TILES_HEIGHt = 14;
     public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
@@ -47,6 +48,8 @@ public class Game implements Runnable{
 
     public void update() {
 
+
+
         switch (GameState.state) {
             case MENU:
                 menu.update();
@@ -59,6 +62,8 @@ public class Game implements Runnable{
             default:
                 break;
         }
+
+
     }
 
     public void render(Graphics g) {
