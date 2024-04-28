@@ -12,6 +12,7 @@ import static utilize.MethodsForCollisionDetection.*;
 
 public class Player extends Entity {
 
+    Game game;
     private float gravity = 0.04f * Game.SCALE;
     private float airTime = 0f;
     private float jumpSpeed = -2.25f * Game.SCALE;
@@ -120,6 +121,10 @@ public class Player extends Entity {
                 inAir = true;
             }
         }
+        if (hitBox.x + hitBox.width == lvlData[0].length * Game.TILES_SIZE) {
+            GameState.state = GameState.PLAYING;
+            game.getPlaying().loadNextLevel();
+        }
 
         if (inAir) {
             if (CanMoveHere(hitBox.x, hitBox.y + airTime, hitBox.width, hitBox.height, lvlData)) {
@@ -219,5 +224,17 @@ public class Player extends Entity {
     }
     public void setJump(boolean jump) {
         this.jump = jump;
+    }
+
+    public void resetAll() {
+        resetDirBolleans();
+        inAir = false;
+        moving = false;
+        playerAction = IDLE;
+        hitBox.x = x;
+        hitBox.y = y;
+        if (!IsOnFloor(hitBox, lvlData)) {
+            inAir = true;
+        }
     }
 }

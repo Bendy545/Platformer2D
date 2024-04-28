@@ -15,6 +15,18 @@ public class Playing extends State implements StateMethods {
     public Playing(Game game) {
         super(game);
         initClasses();
+        loadFirstLevel();
+    }
+    public void loadNextLevel() {
+        resetAll();
+        levelHandler.loadNextLevel();
+    }
+    public void resetAll() {
+        player.resetAll();
+    }
+
+    private void loadFirstLevel() {
+        levelHandler.getCurrentLevel();
     }
 
     private void initClasses() {

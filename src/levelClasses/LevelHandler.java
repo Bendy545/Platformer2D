@@ -1,21 +1,46 @@
 package levelClasses;
 import gameClasses.Game;
 import levelClasses.Level;
+import stateOfGame.GameState;
 import utilize.SaveLoad;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class LevelHandler {
 
     private Game game;
     private BufferedImage[] levelSprite;
-    private Level levelOne;
+    private ArrayList<Level> levels;
+    private int lvlIndex = 0;
 
     public LevelHandler(Game game) {
         this.game = game;
         importLevelSprite();
-        levelOne = new Level(SaveLoad.GetLevelData());
+        levels = new ArrayList<>();
+        buildAllLevels();
+
+    }
+
+    public void loadNextLevel() {
+
+        lvlIndex++;
+        if (lvlIndex >= levels.size()) {
+            lvlIndex = 0;
+            System.out.println("Game completed");
+            GameState.state = GameState.MENU;
+        }
+        Level newLevel = levels.get(lvlIndex);
+        game.getPlaying().getPlayer().loadlvlData(newLevel.getLvlData());
+
+    }
+
+    private void buildAllLevels() {
+        BufferedImage[] allLevels = SaveLoad.getAllLevels();
+        for (BufferedImage img : allLevels) {
+            levels.add(new Level(img));
+        }
     }
 
     private void importLevelSprite() {
@@ -32,7 +57,7 @@ public class LevelHandler {
     public void draw(Graphics g) {
         for (int j = 0; j < Game.TILES_HEIGHt; j++)
             for (int i = 0; i < Game.TILES_WIDTH; i++) {
-                int index = levelOne.getSpriteIndex(i , j);
+                int index = levels.get(lvlIndex).getSpriteIndex(i , j);
                 g.drawImage(levelSprite[index], Game.TILES_SIZE * i, Game.TILES_SIZE * j,Game.TILES_SIZE,Game.TILES_SIZE,null);
             }
     }
@@ -41,7 +66,10 @@ public class LevelHandler {
     }
 
     public Level getCurrentLevel() {
-        return levelOne;
+        return levels.get(lvlIndex);
+    }
+    public int getAmountOfLevels() {
+        return levels.size();
     }
 
 }

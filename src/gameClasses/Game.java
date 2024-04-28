@@ -7,6 +7,7 @@ import stateOfGame.GameState;
 import MenuClasses.Menu;
 import stateOfGame.Playing;
 import utilize.MethodsForCollisionDetection;
+import utilize.SaveLoad;
 
 import java.awt.*;
 
@@ -29,6 +30,7 @@ public class Game implements Runnable{
     public final static int GAME_HEIGHT = TILES_SIZE * TILES_HEIGHt;
 
     public Game() {
+
         initClasses();
         gamePanel = new GamePanel(this);
         gameWindow = new GameWindow(gamePanel);
