@@ -1,6 +1,7 @@
 package utilize;
 
 import gameClasses.Game;
+import objects.Passage;
 import objects.Spike;
 
 import javax.imageio.ImageIO;
@@ -15,7 +16,12 @@ import java.util.ArrayList;
 
 public class SaveLoad {
 
-
+    public static final String PASSAGE = "Passage.png";
+    public static final int PASS = 5;
+    public static final int PASSAGE_WIDTH_DEFAULT = 32;
+    public static final int PASSAGE_HEIGHT_DEFAULT = 32;
+    public static final int PASSAGE_WIDTH = (int) (Game.SCALE * PASSAGE_WIDTH_DEFAULT);
+    public static final int PASSAGE_HEIGHT = (int) (Game.SCALE * PASSAGE_HEIGHT_DEFAULT);
     public static final String SPIKES = "spikes2.png";
     public static final int SPIKE = 4;
     public static final int SPIKE_WIDTH_DEFAULT = 32;
@@ -99,6 +105,20 @@ public class SaveLoad {
                 int value = color.getBlue();
                 if (value == SPIKE) {
                     list.add(new Spike(j * Game.TILES_SIZE, i * Game.TILES_SIZE, SPIKE));
+                }
+            }
+        }
+        return list;
+    }
+
+    public static ArrayList<Passage> getPassages(BufferedImage img) {
+        ArrayList<Passage> list = new ArrayList<>();
+        for (int i = 0; i < img.getHeight(); i++) {
+            for (int j = 0; j < img.getWidth(); j++) {
+                Color color = new Color(img.getRGB(j, i));
+                int value = color.getBlue();
+                if (value == PASS) {
+                    list.add(new Passage(j * Game.TILES_SIZE, i * Game.TILES_SIZE, PASS));
                 }
             }
         }

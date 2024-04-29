@@ -1,5 +1,6 @@
 package levelClasses;
 
+import objects.Passage;
 import objects.Spike;
 import utilize.SaveLoad;
 
@@ -12,13 +13,17 @@ public class Level {
     private BufferedImage img;
     private int[][] lvlData;
     private ArrayList<Spike> spikes;
+    private ArrayList<Passage> passages;
 
     public Level(BufferedImage img) {
         this.img = img;
         createLevelData();
         createSpikes();
+        createPassages();
     }
-
+    private void createPassages() {
+        passages = SaveLoad.getPassages(img);
+    }
     private void createSpikes() {
         spikes = SaveLoad.GetSpikes(img);
     }
@@ -36,5 +41,9 @@ public class Level {
     }
     public ArrayList<Spike> getSpikes() {
         return spikes;
+    }
+
+    public ArrayList<Passage> getPassages() {
+        return passages;
     }
 }

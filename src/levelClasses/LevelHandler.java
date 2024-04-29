@@ -18,9 +18,16 @@ public class LevelHandler {
     public LevelHandler(Game game) {
         this.game = game;
         importLevelSprite();
-        levels = new ArrayList<>();
-        buildAllLevels();
+        //levels = SaveLoad.getAllLevels();
+        //levels = new ArrayList<>();
+       // buildAllLevels();
 
+    }
+
+    public void setCurrentLevel(int index) {
+        if (index >= 0 && index < levels.size()) {
+            lvlIndex = index;
+        }
     }
 
     public void loadNextLevel() {

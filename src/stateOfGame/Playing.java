@@ -35,7 +35,7 @@ public class Playing extends State implements StateMethods {
     }
 
     private void loadFirstLevel() {
-        levelHandler.getCurrentLevel();
+        levelHandler.setCurrentLevel(0);
     }
 
     private void initClasses() {
