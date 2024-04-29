@@ -1,9 +1,15 @@
 package objects;
 
-public class Spike extends Entity{
+import gameClasses.Game;
 
-    public Spike(float x, float y, int width, int height) {
-        super(x, y, width, height);
-        initHitbox(x, y, width, height);
+public class Spike extends Object{
+
+
+    public Spike(int x, int y, int objType) {
+        super(x, y, objType);
+        initHitbox(32, 30);
+        xDrawOffset = 0;
+        yDrawOffset = (int) (Game.SCALE);
+        hitbox.y += yDrawOffset;
     }
 }

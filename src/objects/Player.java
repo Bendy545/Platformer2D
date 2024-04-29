@@ -2,6 +2,7 @@ package objects;
 
 import gameClasses.Game;
 import stateOfGame.GameState;
+import stateOfGame.Playing;
 import utilize.SaveLoad;
 
 import java.awt.*;
@@ -12,6 +13,7 @@ import static utilize.MethodsForCollisionDetection.*;
 
 public class Player extends Entity {
 
+    Playing playing;
     Game game;
     private float gravity = 0.04f * Game.SCALE;
     private float airTime = 0f;
@@ -38,6 +40,9 @@ public class Player extends Entity {
         updatePos();
         updateAnimationTick();
         setAnimation();
+      //  if (moving) {
+//            checkHitSpike();
+    //    }
 
     }
 
@@ -105,6 +110,7 @@ public class Player extends Entity {
 
         moving = false;
 
+
         if (jump && !inAir)
             jump();
 
@@ -143,6 +149,13 @@ public class Player extends Entity {
             updateXPos(xSpeed);
         moving = true;
     }
+/*
+    private void checkHitSpike() {
+        playing.checkHitSpike(this);
+    }
+
+ */
+
     private void jump() {
         if (inAir)
             return;
@@ -236,5 +249,9 @@ public class Player extends Entity {
         if (!IsOnFloor(hitBox, lvlData)) {
             inAir = true;
         }
+    }
+
+    public void kill() {
+
     }
 }

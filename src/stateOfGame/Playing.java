@@ -2,15 +2,24 @@ package stateOfGame;
 
 import gameClasses.Game;
 import levelClasses.LevelHandler;
+import objects.Object;
+import objects.ObjectHandler;
 import objects.Player;
+import objects.Spike;
+import utilize.SaveLoad;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class Playing extends State implements StateMethods {
+    private ObjectHandler objectHandler;
     private Player player;
     private LevelHandler levelHandler;
+
+    public LevelHandler getLevelHandler() {
+        return levelHandler;
+    }
 
     public Playing(Game game) {
         super(game);
@@ -31,8 +40,10 @@ public class Playing extends State implements StateMethods {
 
     private void initClasses() {
         levelHandler = new LevelHandler(game);
+        objectHandler = new ObjectHandler(this);
         player = new Player(200, 200, (int) (32 * Game.SCALE), (int) (32 * Game.SCALE));
         player.loadlvlData(levelHandler.getCurrentLevel().getLvlData());
+
     }
 
     public Player getPlayer() {
@@ -53,6 +64,9 @@ public class Playing extends State implements StateMethods {
     public void draw(Graphics g) {
         levelHandler.draw(g);
         player.render(g);
+        objectHandler.draw(g);
+
+
     }
 
     @Override
@@ -115,5 +129,9 @@ public class Playing extends State implements StateMethods {
                 player.setJump(false);
                 break;
         }
+    }
+
+    public void checkHitSpike(Player p) {
+        objectHandler.checkSpikeHit(p);
     }
 }

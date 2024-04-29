@@ -1,6 +1,7 @@
 package utilize;
 
 import gameClasses.Game;
+import objects.Spike;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -10,10 +11,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class SaveLoad {
 
-    public static final String SPIKES = "spikes.png";
+
+    public static final String SPIKES = "spikes2.png";
+    public static final int SPIKE = 4;
+    public static final int SPIKE_WIDTH_DEFAULT = 32;
+    public static final int SPIKE_HEIGHT_DEFAULT = 32;
+    public static final int SPIKE_WIDTH = (int) (Game.SCALE * SPIKE_WIDTH_DEFAULT);
+    public static final int SPIKE_HEIGHT = (int) (Game.SCALE * SPIKE_HEIGHT_DEFAULT);
+
     public static final String PLAYER_ATLAS = "PlayerSpriteSheet2.png";
     public static final String LEVEL_ATLAS = "Textures4.png";
 
@@ -80,5 +89,19 @@ public class SaveLoad {
                 lvlData[j][i] = value;
             }
         return lvlData;
+    }
+
+    public static ArrayList<Spike> GetSpikes(BufferedImage img) {
+        ArrayList<Spike> list = new ArrayList<>();
+        for (int i = 0; i < img.getHeight(); i++) {
+            for (int j = 0; j < img.getWidth(); j++) {
+                Color color = new Color(img.getRGB(j, i));
+                int value = color.getBlue();
+                if (value == SPIKE) {
+                    list.add(new Spike(j * Game.TILES_SIZE, i * Game.TILES_SIZE, SPIKE));
+                }
+            }
+        }
+        return list;
     }
 }
