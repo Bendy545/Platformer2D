@@ -252,6 +252,6 @@ public class Player extends Entity {
     }
 
     public void kill() {
-
+        GameState.state = GameState.QUIT;
     }
 }

@@ -56,8 +56,11 @@ public class Playing extends State implements StateMethods {
 
     @Override
     public void update() {
-        levelHandler.update();
-        player.update();
+        if (GameState.state == GameState.PLAYING) {
+            levelHandler.update();
+            player.update();
+            objectHandler.checkSpikeHit(player);
+        }
     }
 
     @Override
