@@ -21,18 +21,21 @@ public class ObjectHandler {
     private ArrayList<Spike> spikes;
     private ArrayList<Passage> passages;
 
-    public ObjectHandler(Playing playing) {
+    public ObjectHandler(Playing playing, LevelHandler levelHandler) {
         this.playing = playing;
+        this.levelHandler = levelHandler;
         loadImgs();
         loadObject(playing.getLevelHandler().getCurrentLevel());
     }
 
-    public void checkSpikeHit(Player p) {
+    public void checkPassageHit(Player p) {
         for (Passage passage : passages) {
             if (passage.getHitbox().intersects(p.getHitBox())) {
                 levelHandler.loadNextLevel();
             }
         }
+    }
+    public void checkSpikeHit(Player p) {
         for (Spike s : spikes) {
             if (s.getHitbox().intersects(p.getHitBox())) {
                 p.kill();

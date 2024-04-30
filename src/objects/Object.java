@@ -25,13 +25,6 @@ public class Object {
         this.y = y;
         this.objType = objType;
     }
-
-
-
-
-
-
-
     protected void initHitbox(int width, int height) {
         hitbox = new Rectangle2D.Float(x, y, (int) (width * Game.SCALE), (int) (height * Game.SCALE));
     }

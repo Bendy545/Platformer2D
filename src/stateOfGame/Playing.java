@@ -40,7 +40,7 @@ public class Playing extends State implements StateMethods {
 
     private void initClasses() {
         levelHandler = new LevelHandler(game);
-        objectHandler = new ObjectHandler(this);
+        objectHandler = new ObjectHandler(this, levelHandler);
         player = new Player(200, 200, (int) (32 * Game.SCALE), (int) (32 * Game.SCALE));
         player.loadlvlData(levelHandler.getCurrentLevel().getLvlData());
 
@@ -60,6 +60,7 @@ public class Playing extends State implements StateMethods {
             levelHandler.update();
             player.update();
             objectHandler.checkSpikeHit(player);
+            objectHandler.checkPassageHit(player);
         }
     }
 

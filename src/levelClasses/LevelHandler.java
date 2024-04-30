@@ -18,9 +18,9 @@ public class LevelHandler {
     public LevelHandler(Game game) {
         this.game = game;
         importLevelSprite();
-        //levels = SaveLoad.getAllLevels();
-        //levels = new ArrayList<>();
-       // buildAllLevels();
+
+        levels = new ArrayList<>();
+        buildAllLevels();
 
     }
 
