@@ -1,18 +1,22 @@
 package stateOfGame;
 
 import gameClasses.Game;
+import levelClasses.Level;
 import levelClasses.LevelHandler;
+import objects.*;
 import objects.Object;
-import objects.ObjectHandler;
-import objects.Player;
-import objects.Spike;
 import utilize.SaveLoad;
+
+import static utilize.SaveLoad.*;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class Playing extends State implements StateMethods {
+
+    private static final int STARTING_X_POSITION = 32;
+    private static final int STARTING_Y_POSITION = 384;
     private ObjectHandler objectHandler;
     private Player player;
     private LevelHandler levelHandler;
@@ -32,6 +36,27 @@ public class Playing extends State implements StateMethods {
     }
     public void resetAll() {
         player.resetAll();
+        player.setX(200);
+        player.setY(200);
+/*
+        Level currentLevel = levelHandler.getCurrentLevel();
+        int[][] levelData = currentLevel.getLvlData();
+        for (int i = 0; i < Game.TILES_HEIGHt; i++) {
+            for (int j = 0; j < Game.TILES_WIDTH; j++) {
+                int index = levelData[i][j];
+                if (index == SPIKE) {
+                    Spike spike = currentLevel.getSpikes().get(i * Game.TILES_WIDTH + j);
+                    spike.setX(j * Game.TILES_SIZE);
+                    spike.setY(i * Game.TILES_SIZE);
+                }
+            }
+        }
+
+ */
+    }
+    public void resetPlayerPosition() {
+        player.setX(STARTING_X_POSITION);
+        player.setY(STARTING_Y_POSITION);
     }
 
     private void loadFirstLevel() {

@@ -44,4 +44,23 @@ public class Object {
     public int getyDrawOffset() {
         return yDrawOffset;
     }
+
+    public void setX(int x) {
+        this.x = x;
+        this.hitbox.x = x;
+
+    }
+
+    public void setY(int y) {
+        this.y = y;
+        this.hitbox.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }

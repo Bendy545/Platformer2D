@@ -5,6 +5,8 @@ import stateOfGame.Playing;
 import static stateOfGame.Playing.*;
 import utilize.SaveLoad;
 import levelClasses.LevelHandler;
+
+import javax.swing.plaf.PanelUI;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -28,10 +30,12 @@ public class ObjectHandler {
         loadObject(playing.getLevelHandler().getCurrentLevel());
     }
 
+
     public void checkPassageHit(Player p) {
         for (Passage passage : passages) {
             if (passage.getHitbox().intersects(p.getHitBox())) {
                 levelHandler.loadNextLevel();
+                playing.resetPlayerPosition();
             }
         }
     }
@@ -50,6 +54,10 @@ public class ObjectHandler {
 
     public void loadObject(Level newLevel) {
         spikes = newLevel.getSpikes();
+        for (Spike spike : spikes) {
+            spike.setX(spike.getX());
+            spike.setY(spike.getY());
+        }
         passages = newLevel.getPassages();
     }
 
@@ -69,5 +77,11 @@ public class ObjectHandler {
         drawPassages(g);
     }
 
+    public ArrayList<Spike> getSpikes() {
+        return spikes;
+    }
 
+    public ArrayList<Passage> getPassages() {
+        return passages;
+    }
 }

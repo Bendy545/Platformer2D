@@ -13,6 +13,7 @@ import static utilize.MethodsForCollisionDetection.*;
 
 public class Player extends Entity {
 
+    private int x, y;
     Playing playing;
     Game game;
     private float gravity = 0.04f * Game.SCALE;
@@ -253,5 +254,15 @@ public class Player extends Entity {
 
     public void kill() {
         GameState.state = GameState.QUIT;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+        this.hitBox.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+        this.hitBox.y = y;
     }
 }

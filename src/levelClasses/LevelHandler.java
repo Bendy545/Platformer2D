@@ -33,14 +33,13 @@ public class LevelHandler {
     public void loadNextLevel() {
 
         lvlIndex++;
-        if (lvlIndex >= levels.size()) {
+        if (lvlIndex >=  levels.size()) {
             lvlIndex = 0;
             System.out.println("Game completed");
             GameState.state = GameState.MENU;
         }
         Level newLevel = levels.get(lvlIndex);
         game.getPlaying().getPlayer().loadlvlData(newLevel.getLvlData());
-
     }
 
     private void buildAllLevels() {
