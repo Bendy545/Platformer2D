@@ -54,10 +54,6 @@ public class ObjectHandler {
 
     public void loadObject(Level newLevel) {
         spikes = newLevel.getSpikes();
-        for (Spike spike : spikes) {
-            spike.setX(spike.getX());
-            spike.setY(spike.getY());
-        }
         passages = newLevel.getPassages();
     }
 

@@ -1,7 +1,9 @@
 package levelClasses;
 import gameClasses.Game;
 import levelClasses.Level;
+import objects.ObjectHandler;
 import stateOfGame.GameState;
+import stateOfGame.Playing;
 import utilize.SaveLoad;
 
 import java.awt.*;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 
 public class LevelHandler {
 
+    private ObjectHandler objectHandler;
     private Game game;
     private BufferedImage[] levelSprite;
     private ArrayList<Level> levels;
@@ -29,6 +32,13 @@ public class LevelHandler {
             lvlIndex = index;
         }
     }
+    public void updateObjectHandler(Playing playing) {
+        playing.getObjectHandler().loadObject(getCurrentLevel());
+    }
+
+    private ObjectHandler getObjectHandler() {
+        return objectHandler;
+    }
 
     public void loadNextLevel() {
 
@@ -40,7 +50,9 @@ public class LevelHandler {
         }
         Level newLevel = levels.get(lvlIndex);
         game.getPlaying().getPlayer().loadlvlData(newLevel.getLvlData());
+        updateObjectHandler(game.getPlaying());
     }
+
 
     private void buildAllLevels() {
         BufferedImage[] allLevels = SaveLoad.getAllLevels();

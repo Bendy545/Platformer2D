@@ -163,4 +163,7 @@ public class Playing extends State implements StateMethods {
     public void checkHitSpike(Player p) {
         objectHandler.checkSpikeHit(p);
     }
+    public ObjectHandler getObjectHandler() {
+        return objectHandler;
+    }
 }
