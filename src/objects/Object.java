@@ -1,14 +1,8 @@
 package objects;
 
-import gameClasses.Game;
-import levelClasses.Level;
-import stateOfGame.Playing;
-import utilize.SaveLoad;
-import static utilize.SaveLoad.*;
-import java.awt.*;
+import game.Game;
+
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class Object {
 
@@ -19,7 +13,6 @@ public class Object {
     int xDrawOffset, yDrawOffset;
 
 
-
     public Object(int x, int y, int objType) {
         this.x = x;
         this.y = y;
@@ -28,39 +21,10 @@ public class Object {
     protected void initHitbox(int width, int height) {
         hitbox = new Rectangle2D.Float(x, y, (int) (width * Game.SCALE), (int) (height * Game.SCALE));
     }
-
-    public int getObjType() {
-        return objType;
-    }
-
     public Rectangle2D.Float getHitbox() {
         return hitbox;
     }
 
-    public int getxDrawOffset() {
-        return xDrawOffset;
-    }
 
-    public int getyDrawOffset() {
-        return yDrawOffset;
-    }
 
-    public void setX(int x) {
-        this.x = x;
-        this.hitbox.x = x;
-
-    }
-
-    public void setY(int y) {
-        this.y = y;
-        this.hitbox.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
 }

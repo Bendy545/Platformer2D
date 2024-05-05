@@ -1,11 +1,10 @@
 package utilize;
 
-import gameClasses.Game;
+import game.Game;
 
 import java.awt.geom.Rectangle2D;
 
 public class MethodsForCollisionDetection {
-
 
     public static boolean CanMoveHere(float x, float y, float width, float height, int[][] lvlData) {
         if (!IsSolid(x,y, lvlData))
@@ -15,8 +14,6 @@ public class MethodsForCollisionDetection {
                         return true;
         return false;
     }
-
-
     private static boolean IsSolid(float x, float y, int[][] lvlData) {
         if (x < 0 || x >= Game.GAME_WIDTH)
             return true;

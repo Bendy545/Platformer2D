@@ -1,7 +1,8 @@
 package stateOfGame;
 
-import MenuClasses.MenuButtons;
-import gameClasses.Game;
+import GameOverUI.GameOverButtons;
+import MenuUI.MenuButtons;
+import game.Game;
 
 import java.awt.event.MouseEvent;
 
@@ -18,5 +19,8 @@ public class State {
 
     public boolean OnButton(MouseEvent e, MenuButtons mb) {
         return mb.getButtonHitbox().contains(e.getX(), e.getY());
+    }
+    public boolean OnButton1(MouseEvent e, GameOverButtons gb) {
+        return gb.getButtonHitbox().contains(e.getX(), e.getY());
     }
 }

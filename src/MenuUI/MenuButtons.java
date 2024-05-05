@@ -1,7 +1,7 @@
-package MenuClasses;
+package MenuUI;
 import stateOfGame.GameState;
 import utilize.SaveLoad;
-import static utilize.Animations.UI.Buttons.*;
+import static utilize.Animations.UI.MenuButtons.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -47,10 +47,6 @@ public class MenuButtons {
         if (mousePressed) {
             index = 2;
         }
-    }
-
-    public boolean isMouseOver() {
-        return mouseOver;
     }
 
     public void setMouseOver(boolean mouseOver) {

@@ -14,12 +14,6 @@ public abstract class Entity {
         this.width = width;
         this.height = height;
     }
-
-    protected void drawHitbox(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.drawRect((int)hitBox.x,(int)hitBox.y,(int) hitBox.width,(int)hitBox.height);
-    }
-
     protected void initHitbox(float x, float y, int width, int height) {
         hitBox = new Rectangle2D.Float(x,y, width, height);
     }

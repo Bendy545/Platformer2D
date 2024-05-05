@@ -1,5 +1,5 @@
 package Inputs;
-import gameClasses.GamePanel;
+import game.GamePanel;
 import stateOfGame.GameState;
 
 import java.awt.event.KeyEvent;

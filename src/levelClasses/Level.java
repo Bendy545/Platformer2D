@@ -3,7 +3,6 @@ package levelClasses;
 import objects.Passage;
 import objects.Spike;
 import utilize.SaveLoad;
-
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -31,18 +30,15 @@ public class Level {
     private void createLevelData() {
         lvlData = GetLevelData(img);
     }
-
     public int getSpriteIndex(int x, int y) {
         return lvlData[y][x];
     }
-
     public int[][] getLvlData() {
         return lvlData;
     }
     public ArrayList<Spike> getSpikes() {
         return spikes;
     }
-
     public ArrayList<Passage> getPassages() {
         return passages;
     }

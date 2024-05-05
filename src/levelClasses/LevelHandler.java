@@ -1,7 +1,5 @@
 package levelClasses;
-import gameClasses.Game;
-import levelClasses.Level;
-import objects.ObjectHandler;
+import game.Game;
 import stateOfGame.GameState;
 import stateOfGame.Playing;
 import utilize.SaveLoad;
@@ -12,7 +10,6 @@ import java.util.ArrayList;
 
 public class LevelHandler {
 
-    private ObjectHandler objectHandler;
     private Game game;
     private BufferedImage[] levelSprite;
     private ArrayList<Level> levels;
@@ -21,12 +18,10 @@ public class LevelHandler {
     public LevelHandler(Game game) {
         this.game = game;
         importLevelSprite();
-
         levels = new ArrayList<>();
         buildAllLevels();
 
     }
-
     public void setCurrentLevel(int index) {
         if (index >= 0 && index < levels.size()) {
             lvlIndex = index;
@@ -35,11 +30,6 @@ public class LevelHandler {
     public void updateObjectHandler(Playing playing) {
         playing.getObjectHandler().loadObject(getCurrentLevel());
     }
-
-    private ObjectHandler getObjectHandler() {
-        return objectHandler;
-    }
-
     public void loadNextLevel() {
 
         lvlIndex++;
@@ -53,16 +43,14 @@ public class LevelHandler {
         updateObjectHandler(game.getPlaying());
     }
 
-
     private void buildAllLevels() {
         BufferedImage[] allLevels = SaveLoad.getAllLevels();
         for (BufferedImage img : allLevels) {
             levels.add(new Level(img));
         }
     }
-
     private void importLevelSprite() {
-        BufferedImage img = SaveLoad.GetSpriteAtlas(SaveLoad.LEVEL_ATLAS);
+        BufferedImage img = SaveLoad.GetSpriteAtlas(SaveLoad.TEXTURES);
         levelSprite = new BufferedImage[10];
         for (int i = 0; i < 2; i++) {
             for (int g = 0; g < 5; g++) {
@@ -71,7 +59,6 @@ public class LevelHandler {
             }
         }
     }
-
     public void draw(Graphics g) {
         for (int j = 0; j < Game.TILES_HEIGHt; j++)
             for (int i = 0; i < Game.TILES_WIDTH; i++) {
@@ -80,15 +67,8 @@ public class LevelHandler {
             }
     }
     public void update() {
-
     }
-
     public Level getCurrentLevel() {
         return levels.get(lvlIndex);
     }
-    public int getAmountOfLevels() {
-        return levels.size();
-    }
-
-
 }

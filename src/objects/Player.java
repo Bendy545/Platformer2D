@@ -1,8 +1,7 @@
 package objects;
 
-import gameClasses.Game;
+import game.Game;
 import stateOfGame.GameState;
-import stateOfGame.Playing;
 import utilize.SaveLoad;
 
 import java.awt.*;
@@ -14,7 +13,6 @@ import static utilize.MethodsForCollisionDetection.*;
 public class Player extends Entity {
 
     private int x, y;
-    Playing playing;
     Game game;
     private float gravity = 0.04f * Game.SCALE;
     private float airTime = 0f;
@@ -41,10 +39,6 @@ public class Player extends Entity {
         updatePos();
         updateAnimationTick();
         setAnimation();
-      //  if (moving) {
-//            checkHitSpike();
-    //    }
-
     }
 
     public void render(Graphics g) {
@@ -150,12 +144,6 @@ public class Player extends Entity {
             updateXPos(xSpeed);
         moving = true;
     }
-/*
-    private void checkHitSpike() {
-        playing.checkHitSpike(this);
-    }
-
- */
 
     private void jump() {
         if (inAir)
@@ -178,7 +166,7 @@ public class Player extends Entity {
     }
 
     private void loadAnimations() {
-            BufferedImage img = SaveLoad.GetSpriteAtlas(SaveLoad.PLAYER_ATLAS);
+            BufferedImage img = SaveLoad.GetSpriteAtlas(SaveLoad.PLAYER_SPRITE);
             animations = new BufferedImage[7][3];
             for (int j = 0; j < animations.length; j++) {
                 for (int i = 0; i < animations[j].length; i++) {
@@ -204,37 +192,14 @@ public class Player extends Entity {
     public void  setAttacking(boolean attacking) {
         this.attacking = attacking;
     }
-
-    public boolean isLeft() {
-        return left;
-    }
-
     public void setLeft(boolean left) {
         this.left = left;
     }
-
-    public boolean isUp() {
-        return up;
-    }
-
     public void setUp(boolean up) {
         this.up = up;
     }
-
-    public boolean isRight() {
-        return right;
-    }
-
     public void setRight(boolean right) {
         this.right = right;
-    }
-
-    public boolean isDown() {
-        return down;
-    }
-
-    public void setDown(boolean down) {
-        this.down = down;
     }
     public void setJump(boolean jump) {
         this.jump = jump;

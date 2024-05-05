@@ -1,23 +1,22 @@
 package utilize;
 
-import gameClasses.Game;
+import game.Game;
 
 public class Animations {
 
     public static class UI {
-        public static class Buttons {
+        public static class GameOverButtons {
+            public static final int BUTTON_DEFAUlT_WIDTH = 100;
+            public static final int BUTTON_DEFAULT_HEIGHT = 80;
+            public static final int BUTTON_HEIGHT = (int) (BUTTON_DEFAULT_HEIGHT * Game.SCALE);
+            public static final int BUTTON_WIDTH = (int) (BUTTON_DEFAUlT_WIDTH * Game.SCALE);
+        }
+        public static class MenuButtons {
             public static final int BUTTON_DEFAULT_WIDTH = 150;
             public static final int BUTTON_DEFAULT_HEIGHT = 70;
             public static final int BUTTON_WIDTH = (int) (BUTTON_DEFAULT_WIDTH * Game.SCALE);
             public static final int BUTTON_HEIGHT = (int) (BUTTON_DEFAULT_HEIGHT * Game.SCALE);
         }
-    }
-
-    public static class Directions {
-        public static final int LEFT = 0;
-        public static final int UP = 1;
-        public static final int RIGHT = 2;
-        public static final int DOWN = 3;
     }
     public static class PlayerConstants {
         public static final int RUNNINGRIGHT= 1;

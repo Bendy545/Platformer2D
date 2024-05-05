@@ -1,13 +1,12 @@
-package gameClasses;
+package game;
 
 
 
 
+import GameOverUI.GameOver;
 import stateOfGame.GameState;
-import MenuClasses.Menu;
+import MenuUI.Menu;
 import stateOfGame.Playing;
-import utilize.MethodsForCollisionDetection;
-import utilize.SaveLoad;
 
 import java.awt.*;
 
@@ -21,8 +20,9 @@ public class Game implements Runnable{
     private final int UPS_SET = 200;
     private Playing playing;
     private Menu menu;
+    private GameOver gameOver;
     public final static int TILES_DEFAULT_SIZE = 32;
-    public final static float SCALE = 1.0f;
+    public final static float SCALE = 0.9f;
     public final static int TILES_WIDTH = 26;
     public final static int TILES_HEIGHt = 14;
     public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
@@ -41,6 +41,7 @@ public class Game implements Runnable{
     private void initClasses() {
         menu = new Menu(this);
         playing = new Playing(this);
+
     }
 
     private void startGameLoop() {
@@ -59,6 +60,8 @@ public class Game implements Runnable{
             case PLAYING:
                 playing.update();
                 break;
+            case GAME_OVER:
+                gameOver.update();
             case QUIT:
                 System.exit(0);
             default:

@@ -1,14 +1,8 @@
 package stateOfGame;
 
-import gameClasses.Game;
-import levelClasses.Level;
+import game.Game;
 import levelClasses.LevelHandler;
 import objects.*;
-import objects.Object;
-import utilize.SaveLoad;
-
-import static utilize.SaveLoad.*;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -16,7 +10,7 @@ import java.awt.event.MouseEvent;
 public class Playing extends State implements StateMethods {
 
     private static final int STARTING_X_POSITION = 32;
-    private static final int STARTING_Y_POSITION = 384;
+    private static final int STARTING_Y_POSITION = 352;
     private ObjectHandler objectHandler;
     private Player player;
     private LevelHandler levelHandler;
@@ -38,21 +32,7 @@ public class Playing extends State implements StateMethods {
         player.resetAll();
         player.setX(200);
         player.setY(200);
-/*
-        Level currentLevel = levelHandler.getCurrentLevel();
-        int[][] levelData = currentLevel.getLvlData();
-        for (int i = 0; i < Game.TILES_HEIGHt; i++) {
-            for (int j = 0; j < Game.TILES_WIDTH; j++) {
-                int index = levelData[i][j];
-                if (index == SPIKE) {
-                    Spike spike = currentLevel.getSpikes().get(i * Game.TILES_WIDTH + j);
-                    spike.setX(j * Game.TILES_SIZE);
-                    spike.setY(i * Game.TILES_SIZE);
-                }
-            }
-        }
 
- */
     }
     public void resetPlayerPosition() {
         player.setX(STARTING_X_POSITION);
@@ -70,15 +50,9 @@ public class Playing extends State implements StateMethods {
         player.loadlvlData(levelHandler.getCurrentLevel().getLvlData());
 
     }
-
     public Player getPlayer() {
         return player;
     }
-
-    public void windowFocusLost() {
-        player.resetDirBolleans();
-    }
-
     @Override
     public void update() {
         if (GameState.state == GameState.PLAYING) {
@@ -158,10 +132,6 @@ public class Playing extends State implements StateMethods {
                 player.setJump(false);
                 break;
         }
-    }
-
-    public void checkHitSpike(Player p) {
-        objectHandler.checkSpikeHit(p);
     }
     public ObjectHandler getObjectHandler() {
         return objectHandler;

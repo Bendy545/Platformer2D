@@ -1,6 +1,5 @@
-package gameClasses;
+package game;
 
-import gameClasses.Game;
 import Inputs.MouseInputs;
 import Inputs.KeyboardInputs;
 import javax.swing.*;

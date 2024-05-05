@@ -1,16 +1,13 @@
 package objects;
 
 import levelClasses.Level;
+import stateOfGame.GameState;
 import stateOfGame.Playing;
-import static stateOfGame.Playing.*;
 import utilize.SaveLoad;
 import levelClasses.LevelHandler;
-
-import javax.swing.plaf.PanelUI;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
 import static utilize.SaveLoad.*;
 
 public class ObjectHandler {
@@ -42,7 +39,7 @@ public class ObjectHandler {
     public void checkSpikeHit(Player p) {
         for (Spike s : spikes) {
             if (s.getHitbox().intersects(p.getHitBox())) {
-                p.kill();
+                GameState.state = GameState.GAME_OVER;
             }
         }
     }
@@ -63,7 +60,6 @@ public class ObjectHandler {
         }
     }
     private void drawSpikes(Graphics g) {
-
         for (Spike s : spikes) {
             g.drawImage(spikeImg,(int) (s.getHitbox().x), (int)(s.getHitbox().y), SPIKE_WIDTH, SPIKE_HEIGHT, null);
         }
@@ -71,13 +67,5 @@ public class ObjectHandler {
     public void draw(Graphics g) {
         drawSpikes(g);
         drawPassages(g);
-    }
-
-    public ArrayList<Spike> getSpikes() {
-        return spikes;
-    }
-
-    public ArrayList<Passage> getPassages() {
-        return passages;
     }
 }

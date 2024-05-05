@@ -1,6 +1,6 @@
-package MenuClasses;
+package MenuUI;
 
-import gameClasses.Game;
+import game.Game;
 import stateOfGame.GameState;
 import stateOfGame.State;
 import stateOfGame.StateMethods;

@@ -1,6 +1,6 @@
 package utilize;
 
-import gameClasses.Game;
+import game.Game;
 import objects.Passage;
 import objects.Spike;
 
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class SaveLoad {
 
+    public static final String GAMEOVER_BUTTONS = "GameOverButtons.png";
     public static final String PASSAGE = "Passage.png";
     public static final int PASS = 5;
     public static final int PASSAGE_WIDTH_DEFAULT = 32;
@@ -28,12 +29,11 @@ public class SaveLoad {
     public static final int SPIKE_HEIGHT_DEFAULT = 32;
     public static final int SPIKE_WIDTH = (int) (Game.SCALE * SPIKE_WIDTH_DEFAULT);
     public static final int SPIKE_HEIGHT = (int) (Game.SCALE * SPIKE_HEIGHT_DEFAULT);
-
-    public static final String PLAYER_ATLAS = "PlayerSpriteSheet2.png";
-    public static final String LEVEL_ATLAS = "Textures4.png";
-
+    public static final String PLAYER_SPRITE = "PlayerSpriteSheet2.png";
+    public static final String TEXTURES = "Textures4.png";
     public static final String MENU_BUTTONS = "Buttons3.png";
     public static final String MENU_BACKGROUND = "MenuBackGround.png";
+    public static final String GAME_OVER_BACKGROUND = "GameOver.png";
 
     public static BufferedImage GetSpriteAtlas(String fileName) {
         BufferedImage img = null;
@@ -96,7 +96,6 @@ public class SaveLoad {
             }
         return lvlData;
     }
-
     public static ArrayList<Spike> GetSpikes(BufferedImage img) {
         ArrayList<Spike> list = new ArrayList<>();
         for (int i = 0; i < img.getHeight(); i++) {
@@ -110,7 +109,6 @@ public class SaveLoad {
         }
         return list;
     }
-
     public static ArrayList<Passage> getPassages(BufferedImage img) {
         ArrayList<Passage> list = new ArrayList<>();
         for (int i = 0; i < img.getHeight(); i++) {

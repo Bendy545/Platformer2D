@@ -1,9 +1,8 @@
 package objects;
 
-import gameClasses.Game;
+import game.Game;
 
 public class Spike extends Object{
-
 
     public Spike(int x, int y, int objType) {
         super(x, y, objType);
