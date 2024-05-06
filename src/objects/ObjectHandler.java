@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import static game.LoadImg.*;
 
 public class ObjectHandler {
-
-
     private LevelHandler levelHandler;
     private Playing playing;
     private BufferedImage spikeImg;
@@ -26,8 +24,6 @@ public class ObjectHandler {
         loadImgs();
         loadObject(playing.getLevelHandler().getCurrentLevel());
     }
-
-
     public void checkPassageHit(Player p) {
         for (Passage passage : passages) {
             if (passage.getHitbox().intersects(p.getHitBox())) {
@@ -48,12 +44,10 @@ public class ObjectHandler {
         passageImg = LoadImg.GetSpriteAtlas(PASSAGE);
 
     }
-
     public void loadObject(Level newLevel) {
         spikes = newLevel.getSpikes();
         passages = newLevel.getPassages();
     }
-
     private void drawPassages(Graphics g) {
         for (Passage passage : passages) {
             g.drawImage(passageImg,(int) (passage.getHitbox().x),(int)(passage.getHitbox().y), PASSAGE_WIDTH, PASSAGE_HEIGHT, null);

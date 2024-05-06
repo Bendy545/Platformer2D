@@ -51,7 +51,6 @@ public class MethodsForCollisionDetection {
         }
         return true;
     }
-
     public static float GetYPosEntity(Rectangle2D.Float hitbox, float airTime) {
         final int tileSize = Game.TILES_SIZE;
         int tileYPos = (int) (hitbox.y / tileSize) * tileSize;

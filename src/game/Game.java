@@ -33,41 +33,24 @@ public class Game{
     public final static int GAME_HEIGHT = TILES_SIZE * TILES_HEIGHt;
 
     public Game() {
-
         initClasses();
         gamePanel = new GamePanel(this);
         gameWindow = new GameWindow(gamePanel);
         gamePanel.requestFocus();
-        /*
-        GameTimer gameTimer = new GameTimer(FPS_SET,UPS_SET);
-        GameUpdater gameUpdater = new GameUpdater();
-        GameRenderer gameRenderer = new GameRenderer(gamePanel);
-        FPS_UPS_PRINT fps_ups_print = new FPS_UPS_PRINT(gameTimer, gameUpdater, gameRenderer);
-        gameLoop = new GameLoop(gameTimer, gameUpdater, gameRenderer, fps_ups_print);
-
-
-         */
         gameLoop = new GameLoop(this, FPS_SET, UPS_SET);
        startGameLoop();
-
     }
-
     private void initClasses() {
         menu = new Menu(this);
         playing = new Playing(this);
         gameOver = new GameOver(this);
 
     }
-
     private void startGameLoop() {
         gameThread = new Thread(gameLoop);
         gameThread.start();
     }
-
     public void update() {
-
-
-
         switch (GameState.state) {
             case MENU:
                 menu.update();
@@ -83,10 +66,7 @@ public class Game{
             default:
                 break;
         }
-
-
     }
-
     public void render(Graphics g) {
 
         switch (GameState.state) {
@@ -103,53 +83,6 @@ public class Game{
                 break;
         }
     }
-/*
-    @Override
-    public void run() {
-
-
-        double timePerFrame = 1000000000.0 / FPS_SET;
-        double timePerUpdate = 1000000000.0 / UPS_SET;
-
-        long previousTime = System.nanoTime();
-        int frames = 0;
-        int updates = 0;
-        long lastCheck = System.currentTimeMillis();
-        double deltaU = 0;
-        double deltaF = 0;
-        while (true) {
-
-            long currentTime = System.nanoTime();
-            deltaU += (currentTime - previousTime) / timePerUpdate;
-            deltaF += (currentTime - previousTime) / timePerFrame;
-            previousTime = currentTime;
-            if (deltaU >= 1) {
-                update();
-                updates++;
-                deltaU--;
-            }
-
-            if (deltaF >= 1) {
-                gamePanel.repaint();
-                frames++;
-                deltaF--;
-            }
-
-            if(System.currentTimeMillis() - lastCheck >= 1000) {
-                lastCheck = System.currentTimeMillis();
-                System.out.println("FPS: " + frames + ", UPS: " + updates);
-                frames = 0;
-                updates = 0;
-            }
-        }
-
-
-    }
-
-
-
- */
-
     public void windowFocusLost() {
         if (GameState.state == GameState.PLAYING) {
             playing.getPlayer().resetDirBolleans();

@@ -53,7 +53,6 @@ public class LoadImg {
         }
         return img;
     }
-
     public static BufferedImage[] getAllLevels() {
         URL url = LoadImg.class.getResource("/levels");
         File file = null;
@@ -72,7 +71,6 @@ public class LoadImg {
                 }
             }
         }
-
         BufferedImage[] imgs = new BufferedImage[fileSorted.length];
 
         for (int i = 0; i < imgs.length; i++) {
@@ -95,58 +93,11 @@ public class LoadImg {
         }
         return levelData;
     }
-
     private static int extractLevelValue(int rgb) {
         Color color = new Color(rgb);
         int value = color.getRed();
         return (value >= 10) ? 0 : value;
     }
-        /*
-        int[][] lvlData = new int[img.getHeight()][img.getWidth()];
-        for (int j = 0; j < img.getHeight(); j++)
-            for (int i = 0; i < img.getWidth(); i++) {
-                Color color = new Color(img.getRGB(i,j));
-                int value = color.getRed();
-                if (value >= 10)
-                    value= 0;
-                lvlData[j][i] = value;
-            }
-        return lvlData;
-
-         */
-    /*
-    public static ArrayList<Spike> GetSpikes(BufferedImage img) {
-        ArrayList<Spike> list = new ArrayList<>();
-        for (int i = 0; i < img.getHeight(); i++) {
-            for (int j = 0; j < img.getWidth(); j++) {
-                Color color = new Color(img.getRGB(j, i));
-                int value = color.getBlue();
-                if (value == SPIKE) {
-                    list.add(new Spike(j * Game.TILES_SIZE, i * Game.TILES_SIZE, SPIKE));
-                }
-            }
-        }
-        return list;
-    }
-
-     */
-    /*
-    public static ArrayList<Passage> getPassages(BufferedImage img) {
-        ArrayList<Passage> list = new ArrayList<>();
-        for (int i = 0; i < img.getHeight(); i++) {
-            for (int j = 0; j < img.getWidth(); j++) {
-                Color color = new Color(img.getRGB(j, i));
-                int value = color.getBlue();
-                if (value == PASS) {
-                    list.add(new Passage(j * Game.TILES_SIZE, i * Game.TILES_SIZE, PASS));
-                }
-            }
-        }
-        return list;
-    }
-
-     */
-
     public static ArrayList<Spike> getSpikes(BufferedImage img) {
         return detectObjects(img, SPIKE);
     }
