@@ -20,7 +20,6 @@ public class LevelHandler {
         importLevelSprite();
         levels = new ArrayList<>();
         buildAllLevels();
-
     }
     public void setCurrentLevel(int index) {
         if (index >= 0 && index < levels.size()) {
