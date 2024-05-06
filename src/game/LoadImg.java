@@ -1,6 +1,6 @@
-package utilize;
+package game;
 
-import game.Game;
+import objects.Object;
 import objects.Passage;
 import objects.Spike;
 
@@ -13,8 +13,9 @@ import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
-public class SaveLoad {
+public class LoadImg {
 
     public static final String GAMEOVER_BUTTONS = "GameOverButtons.png";
     public static final String PASSAGE = "Passage.png";
@@ -37,7 +38,7 @@ public class SaveLoad {
 
     public static BufferedImage GetSpriteAtlas(String fileName) {
         BufferedImage img = null;
-        InputStream is = SaveLoad.class.getResourceAsStream("/" + fileName);
+        InputStream is = LoadImg.class.getResourceAsStream("/" + fileName);
 
         try {
             img = ImageIO.read(is);
@@ -54,7 +55,7 @@ public class SaveLoad {
     }
 
     public static BufferedImage[] getAllLevels() {
-        URL url = SaveLoad.class.getResource("/levels");
+        URL url = LoadImg.class.getResource("/levels");
         File file = null;
 
         try {
@@ -83,8 +84,24 @@ public class SaveLoad {
         }
         return imgs;
     }
-
     public static int[][] GetLevelData(BufferedImage img) {
+        int width = img.getWidth();
+        int height = img.getHeight();
+        int[][] levelData = new int[height][width];
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                levelData[y][x] = extractLevelValue(img.getRGB(x, y));
+            }
+        }
+        return levelData;
+    }
+
+    private static int extractLevelValue(int rgb) {
+        Color color = new Color(rgb);
+        int value = color.getRed();
+        return (value >= 10) ? 0 : value;
+    }
+        /*
         int[][] lvlData = new int[img.getHeight()][img.getWidth()];
         for (int j = 0; j < img.getHeight(); j++)
             for (int i = 0; i < img.getWidth(); i++) {
@@ -95,7 +112,9 @@ public class SaveLoad {
                 lvlData[j][i] = value;
             }
         return lvlData;
-    }
+
+         */
+    /*
     public static ArrayList<Spike> GetSpikes(BufferedImage img) {
         ArrayList<Spike> list = new ArrayList<>();
         for (int i = 0; i < img.getHeight(); i++) {
@@ -109,6 +128,9 @@ public class SaveLoad {
         }
         return list;
     }
+
+     */
+    /*
     public static ArrayList<Passage> getPassages(BufferedImage img) {
         ArrayList<Passage> list = new ArrayList<>();
         for (int i = 0; i < img.getHeight(); i++) {
@@ -121,5 +143,32 @@ public class SaveLoad {
             }
         }
         return list;
+    }
+
+     */
+
+    public static ArrayList<Spike> getSpikes(BufferedImage img) {
+        return detectObjects(img, SPIKE);
+    }
+    public static ArrayList<Passage> getPassages(BufferedImage img) {
+        return detectObjects(img, PASS);
+    }
+    private static <T extends Object> ArrayList<T> detectObjects(BufferedImage img, int targetColor) {
+        ArrayList<T> objects = new ArrayList<>();
+        int tileSize = Game.TILES_SIZE;
+        for (int y = 0; y < img.getHeight(); y++) {
+            for (int x = 0; x < img.getWidth(); x++) {
+                Color color = new Color(img.getRGB(x, y));
+                int value = color.getBlue();
+                if (value == targetColor) {
+                    if (targetColor == SPIKE) {
+                        objects.add((T) new Spike(x * tileSize, y * tileSize, SPIKE));
+                    } else if (targetColor == PASS) {
+                        objects.add((T) new Passage(x * tileSize, y * tileSize, PASS));
+                    }
+                }
+            }
+        }
+        return objects;
     }
 }

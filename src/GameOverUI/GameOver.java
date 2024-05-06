@@ -2,13 +2,12 @@ package GameOverUI;
 
 
 import game.Game;
-import static utilize.Animations.UI.GameOverButtons.*;
+import static game.Animations.UI.GameOverButtons.*;
 
 import stateOfGame.GameState;
 import stateOfGame.State;
 import stateOfGame.StateMethods;
-import utilize.Animations;
-import utilize.SaveLoad;
+import game.LoadImg;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -28,7 +27,7 @@ public class GameOver extends State implements StateMethods {
     }
 
     private void loadBackground() {
-        backgoundImg = SaveLoad.GetSpriteAtlas(SaveLoad.GAME_OVER_BACKGROUND);
+        backgoundImg = LoadImg.GetSpriteAtlas(LoadImg.GAME_OVER_BACKGROUND);
         gameOverWidth = (int) (backgoundImg.getWidth() * Game.SCALE);
         gameOverHeight = (int) (backgoundImg.getHeight() * Game.SCALE);
         setGameOverPosition();

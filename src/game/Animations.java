@@ -1,4 +1,4 @@
-package utilize;
+package game;
 
 import game.Game;
 

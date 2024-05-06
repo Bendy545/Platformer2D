@@ -1,12 +1,12 @@
 package levelClasses;
 
+import game.LoadImg;
 import objects.Passage;
 import objects.Spike;
-import utilize.SaveLoad;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import static utilize.SaveLoad.GetLevelData;
+import static game.LoadImg.GetLevelData;
 
 public class Level {
     private BufferedImage img;
@@ -21,12 +21,11 @@ public class Level {
         createPassages();
     }
     private void createPassages() {
-        passages = SaveLoad.getPassages(img);
+        passages = LoadImg.getPassages(img);
     }
     private void createSpikes() {
-        spikes = SaveLoad.GetSpikes(img);
+        spikes = LoadImg.getSpikes(img);
     }
-
     private void createLevelData() {
         lvlData = GetLevelData(img);
     }

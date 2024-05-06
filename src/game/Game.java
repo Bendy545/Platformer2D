@@ -13,7 +13,7 @@ import stateOfGame.Playing;
 import java.awt.*;
 
 
-public class Game implements Runnable{
+public class Game{
 
     private GameLoop gameLoop;
     private GameWindow gameWindow;
@@ -103,7 +103,7 @@ public class Game implements Runnable{
                 break;
         }
     }
-
+/*
     @Override
     public void run() {
 
@@ -147,6 +147,8 @@ public class Game implements Runnable{
     }
 
 
+
+ */
 
     public void windowFocusLost() {
         if (GameState.state == GameState.PLAYING) {

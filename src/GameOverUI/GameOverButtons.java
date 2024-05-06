@@ -2,9 +2,9 @@ package GameOverUI;
 
 
 import stateOfGame.GameState;
-import utilize.SaveLoad;
+import game.LoadImg;
 
-import static utilize.Animations.UI.GameOverButtons.*;
+import static game.Animations.UI.GameOverButtons.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -31,7 +31,7 @@ public class GameOverButtons {
 
     private void loadButtonsTexture() {
         buttonSprite = new BufferedImage[3];
-        BufferedImage img = SaveLoad.GetSpriteAtlas(SaveLoad.GAMEOVER_BUTTONS);
+        BufferedImage img = LoadImg.GetSpriteAtlas(LoadImg.GAMEOVER_BUTTONS);
         for (int i = 0; i <buttonSprite.length; i++) {
             buttonSprite[i] = img.getSubimage(i * BUTTON_DEFAUlT_WIDTH, columnIndex * BUTTON_DEFAULT_HEIGHT, BUTTON_DEFAUlT_WIDTH, BUTTON_DEFAULT_HEIGHT);
         }

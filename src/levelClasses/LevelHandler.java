@@ -2,7 +2,7 @@ package levelClasses;
 import game.Game;
 import stateOfGame.GameState;
 import stateOfGame.Playing;
-import utilize.SaveLoad;
+import game.LoadImg;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -44,13 +44,13 @@ public class LevelHandler {
     }
 
     private void buildAllLevels() {
-        BufferedImage[] allLevels = SaveLoad.getAllLevels();
+        BufferedImage[] allLevels = LoadImg.getAllLevels();
         for (BufferedImage img : allLevels) {
             levels.add(new Level(img));
         }
     }
     private void importLevelSprite() {
-        BufferedImage img = SaveLoad.GetSpriteAtlas(SaveLoad.TEXTURES);
+        BufferedImage img = LoadImg.GetSpriteAtlas(LoadImg.TEXTURES);
         levelSprite = new BufferedImage[10];
         for (int i = 0; i < 2; i++) {
             for (int g = 0; g < 5; g++) {

@@ -2,13 +2,13 @@ package objects;
 
 import game.Game;
 import stateOfGame.GameState;
-import utilize.SaveLoad;
+import game.LoadImg;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static utilize.Animations.PlayerConstants.*;
-import static utilize.MethodsForCollisionDetection.*;
+import static game.Animations.PlayerConstants.*;
+import static game.MethodsForCollisionDetection.*;
 
 public class Player extends Entity {
 
@@ -22,7 +22,7 @@ public class Player extends Entity {
     private BufferedImage[][] animations;
     private int animTick, animIndex, animSpeed = 40;
     private int playerAction = IDLE;
-    private boolean left, up, right, down, jump;
+    private boolean left,up, down, right,jump;
     private boolean moving = false, attacking = false;
     private float playerSpeed = 1.0f * Game.SCALE;
     private int[][] lvlData;
@@ -166,7 +166,7 @@ public class Player extends Entity {
     }
 
     private void loadAnimations() {
-            BufferedImage img = SaveLoad.GetSpriteAtlas(SaveLoad.PLAYER_SPRITE);
+            BufferedImage img = LoadImg.GetSpriteAtlas(LoadImg.PLAYER_SPRITE);
             animations = new BufferedImage[7][3];
             for (int j = 0; j < animations.length; j++) {
                 for (int i = 0; i < animations[j].length; i++) {
@@ -216,11 +216,6 @@ public class Player extends Entity {
             inAir = true;
         }
     }
-
-    public void kill() {
-        GameState.state = GameState.QUIT;
-    }
-
     public void setX(int x) {
         this.x = x;
         this.hitBox.x = x;

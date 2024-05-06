@@ -3,12 +3,12 @@ package objects;
 import levelClasses.Level;
 import stateOfGame.GameState;
 import stateOfGame.Playing;
-import utilize.SaveLoad;
+import game.LoadImg;
 import levelClasses.LevelHandler;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import static utilize.SaveLoad.*;
+import static game.LoadImg.*;
 
 public class ObjectHandler {
 
@@ -44,8 +44,8 @@ public class ObjectHandler {
         }
     }
     public void loadImgs() {
-        spikeImg = SaveLoad.GetSpriteAtlas(SPIKES);
-        passageImg = SaveLoad.GetSpriteAtlas(PASSAGE);
+        spikeImg = LoadImg.GetSpriteAtlas(SPIKES);
+        passageImg = LoadImg.GetSpriteAtlas(PASSAGE);
 
     }
 

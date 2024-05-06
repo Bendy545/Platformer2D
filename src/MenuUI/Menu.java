@@ -4,7 +4,7 @@ import game.Game;
 import stateOfGame.GameState;
 import stateOfGame.State;
 import stateOfGame.StateMethods;
-import utilize.SaveLoad;
+import game.LoadImg;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -25,7 +25,7 @@ public class Menu extends State implements StateMethods {
     }
 
     private void loadBackgound() {
-        backgoundImg = SaveLoad.GetSpriteAtlas(SaveLoad.MENU_BACKGROUND);
+        backgoundImg = LoadImg.GetSpriteAtlas(LoadImg.MENU_BACKGROUND);
         menuWidth = (int) (backgoundImg.getWidth() * Game.SCALE);
         menuHeight = (int) (backgoundImg.getHeight() * Game.SCALE);
         menuX = Game.GAME_WIDTH / 2 - menuWidth / 2;
