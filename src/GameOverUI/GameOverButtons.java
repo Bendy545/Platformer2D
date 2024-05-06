@@ -21,6 +21,8 @@ public class GameOverButtons {
         this.y = y;
         this.columnIndex = columnIndex;
         this.state = state;
+        loadButtonsTexture();
+        ButtonHitbox();
     }
 
     private void ButtonHitbox() {
@@ -31,7 +33,7 @@ public class GameOverButtons {
         buttonSprite = new BufferedImage[3];
         BufferedImage img = SaveLoad.GetSpriteAtlas(SaveLoad.GAMEOVER_BUTTONS);
         for (int i = 0; i <buttonSprite.length; i++) {
-            buttonSprite[i] = img.getSubimage(columnIndex * BUTTON_DEFAUlT_WIDTH, i * BUTTON_DEFAULT_HEIGHT, BUTTON_DEFAUlT_WIDTH, BUTTON_DEFAULT_HEIGHT);
+            buttonSprite[i] = img.getSubimage(i * BUTTON_DEFAUlT_WIDTH, columnIndex * BUTTON_DEFAULT_HEIGHT, BUTTON_DEFAUlT_WIDTH, BUTTON_DEFAULT_HEIGHT);
         }
     }
 
@@ -40,6 +42,7 @@ public class GameOverButtons {
     }
 
     public void update() {
+
         index = 0;
         if (mouseOver) {
             index = 1;

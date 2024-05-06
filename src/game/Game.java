@@ -4,6 +4,8 @@ package game;
 
 
 import GameOverUI.GameOver;
+
+
 import stateOfGame.GameState;
 import MenuUI.Menu;
 import stateOfGame.Playing;
@@ -13,6 +15,7 @@ import java.awt.*;
 
 public class Game implements Runnable{
 
+    private GameLoop gameLoop;
     private GameWindow gameWindow;
     private GamePanel gamePanel;
     private Thread gameThread;
@@ -35,17 +38,29 @@ public class Game implements Runnable{
         gamePanel = new GamePanel(this);
         gameWindow = new GameWindow(gamePanel);
         gamePanel.requestFocus();
-        startGameLoop();
+        /*
+        GameTimer gameTimer = new GameTimer(FPS_SET,UPS_SET);
+        GameUpdater gameUpdater = new GameUpdater();
+        GameRenderer gameRenderer = new GameRenderer(gamePanel);
+        FPS_UPS_PRINT fps_ups_print = new FPS_UPS_PRINT(gameTimer, gameUpdater, gameRenderer);
+        gameLoop = new GameLoop(gameTimer, gameUpdater, gameRenderer, fps_ups_print);
+
+
+         */
+        gameLoop = new GameLoop(this, FPS_SET, UPS_SET);
+       startGameLoop();
+
     }
 
     private void initClasses() {
         menu = new Menu(this);
         playing = new Playing(this);
+        gameOver = new GameOver(this);
 
     }
 
     private void startGameLoop() {
-        gameThread = new Thread(this);
+        gameThread = new Thread(gameLoop);
         gameThread.start();
     }
 
@@ -62,6 +77,7 @@ public class Game implements Runnable{
                 break;
             case GAME_OVER:
                 gameOver.update();
+                break;
             case QUIT:
                 System.exit(0);
             default:
@@ -80,6 +96,9 @@ public class Game implements Runnable{
             case PLAYING:
                 playing.draw(g);
                 break;
+            case GAME_OVER:
+                gameOver.draw(g);
+                break;
             default:
                 break;
         }
@@ -87,6 +106,7 @@ public class Game implements Runnable{
 
     @Override
     public void run() {
+
 
         double timePerFrame = 1000000000.0 / FPS_SET;
         double timePerUpdate = 1000000000.0 / UPS_SET;
@@ -122,6 +142,8 @@ public class Game implements Runnable{
                 updates = 0;
             }
         }
+
+
     }
 
 
@@ -138,5 +160,13 @@ public class Game implements Runnable{
 
     public Playing getPlaying() {
         return playing;
+    }
+
+    public GameOver getGameOver() {
+        return gameOver;
+    }
+
+    public GamePanel getGamePanel() {
+        return gamePanel;
     }
 }

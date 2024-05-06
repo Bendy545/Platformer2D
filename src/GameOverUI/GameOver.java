@@ -1,10 +1,13 @@
 package GameOverUI;
 
-import MenuUI.MenuButtons;
+
 import game.Game;
+import static utilize.Animations.UI.GameOverButtons.*;
+
 import stateOfGame.GameState;
 import stateOfGame.State;
 import stateOfGame.StateMethods;
+import utilize.Animations;
 import utilize.SaveLoad;
 
 import java.awt.*;
@@ -19,6 +22,8 @@ public class GameOver extends State implements StateMethods {
     private GameOverButtons[] buttons = new GameOverButtons[2];
     public GameOver(Game game) {
         super(game);
+        loadButtons();
+        loadBackground();
 
     }
 
@@ -29,12 +34,20 @@ public class GameOver extends State implements StateMethods {
         setGameOverPosition();
     }
     private void setGameOverPosition() {
-        gameOverX = Game.GAME_WIDTH / 2 - gameOverWidth / 2;
-        gameOverY = (int) (50 * Game.SCALE);
+        gameOverX = Game.GAME_WIDTH / 2 + 70 - gameOverWidth / 2;
+        gameOverY = (int) (10 * Game.SCALE);
     }
     private void loadButtons() {
-        buttons[0] = new GameOverButtons(Game.GAME_WIDTH, (int)(200 * Game.SCALE), 0, GameState.PLAYING);
-        buttons[1] = new GameOverButtons(Game.GAME_WIDTH, (int)(200 * Game.SCALE), 1, GameState.QUIT);
+        int xOffset = (int) (50 * Game.SCALE);
+
+
+        buttons = new GameOverButtons[2];
+        for (int i = 0; i < buttons.length; i++) {
+            int columnIndex = i == 0? 0 : 1;
+            int x = Game.GAME_WIDTH / 2 - BUTTON_WIDTH / 2 + (i * (BUTTON_WIDTH + xOffset));
+            int y = (int) (100 * Game.SCALE);
+            buttons[i] = new GameOverButtons(x, y, columnIndex, i == 0? GameState.PLAYING : GameState.QUIT);
+        }
     }
     @Override
     public void update() {
@@ -107,4 +120,6 @@ public class GameOver extends State implements StateMethods {
     public void keyReleased(KeyEvent e) {
 
     }
+
+
 }
