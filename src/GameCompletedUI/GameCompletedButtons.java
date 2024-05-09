@@ -1,14 +1,13 @@
-package GameOverUI;
+package GameCompletedUI;
 
-
-import stateOfGame.GameState;
 import game.LoadImg;
+import stateOfGame.GameState;
 
-import static game.Animations.UI.GameOverButtons.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import static game.Animations.UI.GameOverButtons.*;
 
-public class GameOverButtons {
+public class GameCompletedButtons {
 
     private Rectangle buttonHitbox;
     private boolean mouseOver, mousePressed;
@@ -16,7 +15,7 @@ public class GameOverButtons {
     private GameState state;
     private BufferedImage[] buttonSprite;
 
-    public GameOverButtons(int x, int y, int columnIndex, GameState state) {
+    public GameCompletedButtons(int x, int y, int columnIndex, GameState state) {
         this.x = x;
         this.y = y;
         this.columnIndex = columnIndex;
@@ -24,22 +23,19 @@ public class GameOverButtons {
         loadButtonsTexture();
         ButtonHitbox();
     }
-
+    public void draw(Graphics g) {
+        g.drawImage(buttonSprite[index], x, y, BUTTON_WIDTH, BUTTON_HEIGHT, null);
+    }
     private void ButtonHitbox() {
         buttonHitbox = new Rectangle(x, y, BUTTON_WIDTH, BUTTON_HEIGHT);
     }
-
     private void loadButtonsTexture() {
         buttonSprite = new BufferedImage[3];
-        BufferedImage img = LoadImg.GetSpriteAtlas(LoadImg.GAMEOVER_BUTTONS);
+        BufferedImage img = LoadImg.GetSpriteAtlas(LoadImg.GAME_COMPLETED_BUTTONS);
         for (int i = 0; i <buttonSprite.length; i++) {
             buttonSprite[i] = img.getSubimage(i * BUTTON_DEFAUlT_WIDTH, columnIndex * BUTTON_DEFAULT_HEIGHT, BUTTON_DEFAUlT_WIDTH, BUTTON_DEFAULT_HEIGHT);
         }
     }
-    public void draw(Graphics g) {
-        g.drawImage(buttonSprite[index], x, y, BUTTON_WIDTH, BUTTON_HEIGHT, null);
-    }
-
     public void update() {
 
         index = 0;

@@ -34,13 +34,11 @@ public class Player extends Entity {
         loadAnimations();
         initHitbox(x, y, (int)(16 * Game.SCALE), (int)(30 * Game.SCALE));
     }
-
     public void update() {
         updatePos();
         updateAnimationTick();
         setAnimation();
     }
-
     public void render(Graphics g) {
         g.drawImage(animations[playerAction][animIndex], (int) (hitBox.x - xDrawOffset), (int) (hitBox.y - yDrawOffset), width, height, null);
     }
@@ -56,7 +54,6 @@ public class Player extends Entity {
                 attacking = false;
             }
         }
-
     }
 
     private void setAnimation() {
@@ -94,13 +91,10 @@ public class Player extends Entity {
             down = false;
         }
     }
-
-
     private void resetAniTick() {
         animTick = 0;
         animIndex = 0;
     }
-
     private void updatePos() {
 
         moving = false;
@@ -144,7 +138,6 @@ public class Player extends Entity {
             updateXPos(xSpeed);
         moving = true;
     }
-
     private void jump() {
         if (inAir)
             return;
@@ -220,7 +213,6 @@ public class Player extends Entity {
         this.x = x;
         this.hitBox.x = x;
     }
-
     public void setY(int y) {
         this.y = y;
         this.hitBox.y = y;

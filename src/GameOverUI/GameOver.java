@@ -23,7 +23,6 @@ public class GameOver extends State implements StateMethods {
         super(game);
         loadButtons();
         loadBackground();
-
     }
 
     private void loadBackground() {
@@ -45,7 +44,7 @@ public class GameOver extends State implements StateMethods {
             int columnIndex = i == 0? 0 : 1;
             int x = Game.GAME_WIDTH / 2 - BUTTON_WIDTH / 2 + (i * (BUTTON_WIDTH + xOffset));
             int y = (int) (100 * Game.SCALE);
-            buttons[i] = new GameOverButtons(x, y, columnIndex, i == 0? GameState.PLAYING : GameState.QUIT);
+            buttons[i] = new GameOverButtons(x, y, columnIndex, i == 0? GameState.PLAY_AGAIN: GameState.QUIT);
         }
     }
     @Override
@@ -101,9 +100,14 @@ public class GameOver extends State implements StateMethods {
     public void mouseReleased(MouseEvent e) {
         for (GameOverButtons gb : buttons) {
             if (OnButton1(e, gb)) {
-                if (gb.isMousePressed()) {
-                    gb.setState();
-                }
+              if (gb.isMousePressed()) {
+                  gb.setState();
+                  if (gb.getState() == GameState.PLAY_AGAIN) {
+                      game.getPlaying().resetAll();
+                      GameState.state = GameState.PLAYING;
+                  }
+              }
+
                 break;
             }
         }
@@ -119,6 +123,4 @@ public class GameOver extends State implements StateMethods {
     public void keyReleased(KeyEvent e) {
 
     }
-
-
 }

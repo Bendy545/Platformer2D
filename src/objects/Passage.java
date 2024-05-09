@@ -6,11 +6,6 @@ public class Passage extends Object{
 
     public Passage(int x, int y, int objType) {
         super(x, y, objType);
-        this.nextLevelFileName = nextLevelFileName;
         initHitbox(32, 32);
-    }
-
-    public String getNextLevelFileName() {
-        return nextLevelFileName;
     }
 }

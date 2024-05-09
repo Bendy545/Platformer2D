@@ -3,9 +3,8 @@ package game;
 
 
 
+import GameCompletedUI.GameCompleted;
 import GameOverUI.GameOver;
-
-
 import stateOfGame.GameState;
 import MenuUI.Menu;
 import stateOfGame.Playing;
@@ -15,6 +14,7 @@ import java.awt.*;
 
 public class Game{
 
+    private GameCompleted gameCompleted;
     private GameLoop gameLoop;
     private GameWindow gameWindow;
     private GamePanel gamePanel;
@@ -44,6 +44,7 @@ public class Game{
         menu = new Menu(this);
         playing = new Playing(this);
         gameOver = new GameOver(this);
+        gameCompleted = new GameCompleted(this);
 
     }
     private void startGameLoop() {
@@ -63,6 +64,11 @@ public class Game{
                 break;
             case QUIT:
                 System.exit(0);
+            case PLAY_AGAIN:
+                GameState.state = GameState.PLAYING;
+                break;
+            case GAME_COMPLETED:
+                gameCompleted.update();
             default:
                 break;
         }
@@ -79,6 +85,8 @@ public class Game{
             case GAME_OVER:
                 gameOver.draw(g);
                 break;
+            case GAME_COMPLETED:
+                gameCompleted.draw(g);
             default:
                 break;
         }
@@ -92,16 +100,17 @@ public class Game{
     public Menu getMenu() {
         return menu;
     }
-
     public Playing getPlaying() {
         return playing;
     }
-
     public GameOver getGameOver() {
         return gameOver;
     }
-
     public GamePanel getGamePanel() {
         return gamePanel;
+    }
+
+    public GameCompleted getGameCompleted() {
+        return gameCompleted;
     }
 }

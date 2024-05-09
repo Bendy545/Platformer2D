@@ -1,5 +1,6 @@
 package stateOfGame;
 
+import GameCompletedUI.GameCompletedButtons;
 import GameOverUI.GameOverButtons;
 import MenuUI.MenuButtons;
 import game.Game;
@@ -21,6 +22,9 @@ public class State {
         return mb.getButtonHitbox().contains(e.getX(), e.getY());
     }
     public boolean OnButton1(MouseEvent e, GameOverButtons gb) {
+        return gb.getButtonHitbox().contains(e.getX(), e.getY());
+    }
+    public boolean OnButton2(MouseEvent e, GameCompletedButtons gb) {
         return gb.getButtonHitbox().contains(e.getX(), e.getY());
     }
 }

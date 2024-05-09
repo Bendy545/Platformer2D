@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.stream.IntStream;
 
 public class LoadImg {
-
+    public static final String GAME_COMPLETED_BUTTONS = "GameOverButtons.png";
     public static final String GAMEOVER_BUTTONS = "GameOverButtons.png";
     public static final String PASSAGE = "Passage.png";
     public static final int PASS = 5;
@@ -35,6 +35,7 @@ public class LoadImg {
     public static final String MENU_BUTTONS = "Buttons3.png";
     public static final String MENU_BACKGROUND = "MenuBackGround.png";
     public static final String GAME_OVER_BACKGROUND = "GameOver.png";
+    public static final String GAME_COMPLETED_BACKGROUND = "GameCompleted.png";
 
     public static BufferedImage GetSpriteAtlas(String fileName) {
         BufferedImage img = null;

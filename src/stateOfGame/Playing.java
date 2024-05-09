@@ -9,16 +9,14 @@ import java.awt.event.MouseEvent;
 
 public class Playing extends State implements StateMethods {
 
-    private static final int STARTING_X_POSITION = 32;
-    private static final int STARTING_Y_POSITION = 352;
+    private static final int STARTING_X_POSITION = 40;
+    private static final int STARTING_Y_POSITION = 300;
     private ObjectHandler objectHandler;
     private Player player;
     private LevelHandler levelHandler;
-
     public LevelHandler getLevelHandler() {
         return levelHandler;
     }
-
     public Playing(Game game) {
         super(game);
         initClasses();
@@ -30,25 +28,22 @@ public class Playing extends State implements StateMethods {
     }
     public void resetAll() {
         player.resetAll();
-        player.setX(200);
-        player.setY(200);
+        player.setX(40);
+        player.setY(300);
 
     }
     public void resetPlayerPosition() {
         player.setX(STARTING_X_POSITION);
         player.setY(STARTING_Y_POSITION);
     }
-
     private void loadFirstLevel() {
         levelHandler.setCurrentLevel(0);
     }
-
     private void initClasses() {
         levelHandler = new LevelHandler(game);
         objectHandler = new ObjectHandler(this, levelHandler);
-        player = new Player(200, 200, (int) (32 * Game.SCALE), (int) (32 * Game.SCALE));
+        player = new Player(40, 300, (int) (32 * Game.SCALE), (int) (32 * Game.SCALE));
         player.loadlvlData(levelHandler.getCurrentLevel().getLvlData());
-
     }
     public Player getPlayer() {
         return player;
@@ -68,10 +63,7 @@ public class Playing extends State implements StateMethods {
         levelHandler.draw(g);
         player.render(g);
         objectHandler.draw(g);
-
-
     }
-
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {

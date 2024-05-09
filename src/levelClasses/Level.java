@@ -13,7 +13,6 @@ public class Level {
     private int[][] lvlData;
     private ArrayList<Spike> spikes;
     private ArrayList<Passage> passages;
-
     public Level(BufferedImage img) {
         this.img = img;
         createLevelData();

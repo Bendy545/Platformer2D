@@ -1,6 +1,7 @@
 package game;
 
 public class GameLoop implements Runnable{
+
     private Game game;
     private final int FPS_SET;
     private final int UPS_SET;
@@ -26,13 +27,6 @@ public class GameLoop implements Runnable{
 
             long currentTime = System.nanoTime();
             long elapsedTime = currentTime - previousTime;
-            previousTime = currentTime;
-
-         //   processElapsedFrames(elapsedTime, timePerFrame);
-         //   processElapsedUpdates(elapsedTime, timePerUpdate);
-
-
-
             deltaU += elapsedTime / timePerUpdate;
             deltaF += elapsedTime / timePerFrame;
             previousTime = currentTime;
@@ -56,19 +50,10 @@ public class GameLoop implements Runnable{
             }
         }
     }
-    private void processElapsedFrames(long elapsedTime, double timePerFrame) {
-        while (elapsedTime >= timePerFrame) {
-            game.getGamePanel().repaint();
-            elapsedTime -= timePerFrame;
-        }
-    }
-    private void processElapsedUpdates(long elapsedTime, double timePerUpdate) {
-        while (elapsedTime >= timePerUpdate) {
-            game.update();
-            elapsedTime -= timePerUpdate;
-        }
-    }
+
     private void printFPSAndUPS(int frames, int updates) {
         System.out.println("FPS: " + frames + ", UPS: " + updates);
     }
+
+
 }
