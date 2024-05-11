@@ -5,7 +5,7 @@ import stateOfGame.GameState;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import static ui.Buttons.GameOverButtons.*;
+import static ui.Buttons.GameCompletedButtons.*;
 
 public class GameCompletedButtons {
     private Rectangle buttonHitbox;

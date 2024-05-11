@@ -18,26 +18,26 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class LoadImg {
-    public static final String GAME_COMPLETED_BUTTONS = "GameOverButtons.png";
-    public static final String GAMEOVER_BUTTONS = "GameOverButtons.png";
-    public static final String PASSAGE = "Passage.png";
+    public static final String GAME_COMPLETED_BUTTONS = "UITextures/GameCompletedButtons.png";
+    public static final String GAMEOVER_BUTTONS = "UITextures/GameOverButtons.png";
+    public static final String PASSAGE = "objects&textures/Passage.png";
     public static final int PASS = 5;
     public static final int PASSAGE_WIDTH_DEFAULT = 32;
     public static final int PASSAGE_HEIGHT_DEFAULT = 32;
     public static final int PASSAGE_WIDTH = (int) (Game.SCALE * PASSAGE_WIDTH_DEFAULT);
     public static final int PASSAGE_HEIGHT = (int) (Game.SCALE * PASSAGE_HEIGHT_DEFAULT);
-    public static final String SPIKES = "spikes2.png";
+    public static final String SPIKES = "objects&textures/spikes2.png";
     public static final int SPIKE = 4;
     public static final int SPIKE_WIDTH_DEFAULT = 32;
     public static final int SPIKE_HEIGHT_DEFAULT = 32;
     public static final int SPIKE_WIDTH = (int) (Game.SCALE * SPIKE_WIDTH_DEFAULT);
     public static final int SPIKE_HEIGHT = (int) (Game.SCALE * SPIKE_HEIGHT_DEFAULT);
-    public static final String PLAYER_SPRITE = "PlayerSpriteSheet2.png";
-    public static final String TEXTURES = "Textures4.png";
-    public static final String MENU_BUTTONS = "Buttons3.png";
-    public static final String MENU_BACKGROUND = "MenuBackGround.png";
-    public static final String GAME_OVER_BACKGROUND = "GameOver.png";
-    public static final String GAME_COMPLETED_BACKGROUND = "GameCompleted.png";
+    public static final String PLAYER_SPRITE = "player/PlayerSpriteSheet2.png";
+    public static final String TEXTURES = "objects&textures/Textures4.png";
+    public static final String MENU_BUTTONS = "UITextures/MenuButtons.png";
+    public static final String MENU_BACKGROUND = "UITextures/MenuBackGround.png";
+    public static final String GAME_OVER_BACKGROUND = "UITextures/GameOver.png";
+    public static final String GAME_COMPLETED_BACKGROUND = "UITextures/GameCompleted.png";
 
     public static BufferedImage getSpriteImg(String fileName) {
         try (InputStream is = LoadImg.class.getResourceAsStream("/" + fileName)) {
