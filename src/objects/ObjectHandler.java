@@ -40,8 +40,8 @@ public class ObjectHandler {
         }
     }
     public void loadImgs() {
-        spikeImg = LoadImg.GetSpriteAtlas(SPIKES);
-        passageImg = LoadImg.GetSpriteAtlas(PASSAGE);
+        spikeImg = LoadImg.getSpriteImg(SPIKES);
+        passageImg = LoadImg.getSpriteImg(PASSAGE);
     }
     public void loadObject(Level newLevel) {
         spikes = newLevel.getSpikes();

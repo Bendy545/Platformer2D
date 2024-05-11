@@ -8,12 +8,14 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.stream.IntStream;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class LoadImg {
     public static final String GAME_COMPLETED_BUTTONS = "GameOverButtons.png";
@@ -37,46 +39,31 @@ public class LoadImg {
     public static final String GAME_OVER_BACKGROUND = "GameOver.png";
     public static final String GAME_COMPLETED_BACKGROUND = "GameCompleted.png";
 
-    public static BufferedImage GetSpriteAtlas(String fileName) {
-        BufferedImage img = null;
-        InputStream is = LoadImg.class.getResourceAsStream("/" + fileName);
-
-        try {
-            img = ImageIO.read(is);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            try {
-                is.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+    public static BufferedImage getSpriteImg(String fileName) {
+        try (InputStream is = LoadImg.class.getResourceAsStream("/" + fileName)) {
+            if (is == null) {
+                throw new FileNotFoundException("File not found: " + fileName);
             }
+            return ImageIO.read(is);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading file: " + fileName, e);
         }
-        return img;
     }
+
     public static BufferedImage[] getAllLevels() {
         URL url = LoadImg.class.getResource("/levels");
         File file = null;
-
         try {
             file = new File(url.toURI());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
         File[] files = file.listFiles();
-        File[] fileSorted = new File[files.length];
-        for (int i = 0; i < fileSorted.length; i++) {
-            for (int j = 0; j < files.length; j++) {
-                if (files[j].getName().equals((i + 1) + ".png")) {
-                    fileSorted[i] = files[j];
-                }
-            }
-        }
-        BufferedImage[] imgs = new BufferedImage[fileSorted.length];
-
+        Arrays.sort(files, Comparator.comparingInt(f -> Integer.parseInt(f.getName().replace(".png", ""))));
+        BufferedImage[] imgs = new BufferedImage[files.length];
         for (int i = 0; i < imgs.length; i++) {
-            try {
-                imgs[i] = ImageIO.read(fileSorted[i]);
+            try{
+                imgs[i] = ImageIO.read(files[i]);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

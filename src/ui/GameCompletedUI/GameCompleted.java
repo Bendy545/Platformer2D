@@ -1,6 +1,5 @@
-package GameCompletedUI;
+package ui.GameCompletedUI;
 
-import GameOverUI.GameOverButtons;
 import game.Game;
 import game.LoadImg;
 import stateOfGame.GameState;
@@ -12,7 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import static game.Animations.UI.GameOverButtons.BUTTON_WIDTH;
+import static ui.Buttons.GameOverButtons.BUTTON_WIDTH;
 
 public class GameCompleted extends State implements StateMethods {
 
@@ -25,7 +24,7 @@ public class GameCompleted extends State implements StateMethods {
         loadBackground();
     }
     private void loadBackground() {
-        backgoundImg = LoadImg.GetSpriteAtlas(LoadImg.GAME_COMPLETED_BACKGROUND);
+        backgoundImg = LoadImg.getSpriteImg(LoadImg.GAME_COMPLETED_BACKGROUND);
         gameCompletedWidth = (int) (backgoundImg.getWidth() * Game.SCALE);
         gameCompletedHeight = (int) (backgoundImg.getHeight() * Game.SCALE);
         setGameOverPosition();

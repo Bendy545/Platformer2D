@@ -7,7 +7,7 @@ import game.LoadImg;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static game.Animations.PlayerConstants.*;
+import static game.PlayerAnimations.PlayerConstants.*;
 import static game.MethodsForCollisionDetection.*;
 
 public class Player extends Entity {
@@ -96,48 +96,81 @@ public class Player extends Entity {
         animIndex = 0;
     }
     private void updatePos() {
-
         moving = false;
 
+        handleJump();
 
-        if (jump && !inAir)
-            jump();
-
-        float xSpeed = 0;
-
-        if (left)
-            xSpeed -= playerSpeed;
-
-        if(right)
-            xSpeed += playerSpeed;
+        float xSpeed = calculateXSpeed();
 
         if (!inAir) {
-            if (!IsOnFloor(hitBox,lvlData)) {
-                inAir = true;
-            }
+            checkIfInAir();
         }
-        if (hitBox.x + hitBox.width == lvlData[0].length * Game.TILES_SIZE) {
-            GameState.state = GameState.PLAYING;
-            game.getPlaying().loadNextLevel();
+
+        if (checkRightBorder()) {
+            return;
         }
 
         if (inAir) {
-            if (CanMoveHere(hitBox.x, hitBox.y + airTime, hitBox.width, hitBox.height, lvlData)) {
-                hitBox.y += airTime;
-                airTime += gravity;
-                updateXPos(xSpeed);
-            } else {
-                hitBox.y = GetYPosEntity(hitBox, airTime);
-                if (airTime > 0)
-                    resetInAir();
-                else
-                    airTime = fallSpeedAfterCollision;
-                updateXPos(xSpeed);
-            }
-        }else
+            handleInAirMovement(xSpeed);
+        } else {
             updateXPos(xSpeed);
+        }
+
         moving = true;
     }
+
+    private void handleJump() {
+        if (jump && !inAir) {
+            jump();
+        }
+    }
+
+    private float calculateXSpeed() {
+        float xSpeed = 0;
+        if (left) {
+            xSpeed -= playerSpeed;
+        }
+        if (right) {
+            xSpeed += playerSpeed;
+        }
+        return xSpeed;
+    }
+
+    private void checkIfInAir() {
+        if (!IsOnFloor(hitBox, lvlData)) {
+            inAir = true;
+        }
+    }
+
+    private boolean checkRightBorder() {
+        if (hitBox.x + hitBox.width == lvlData[0].length * Game.TILES_SIZE) {
+            GameState.state = GameState.PLAYING;
+            game.getPlaying().loadNextLevel();
+            return true;
+        }
+        return false;
+    }
+
+    private void handleInAirMovement(float xSpeed) {
+        if (CanMoveHere(hitBox.x, hitBox.y + airTime, hitBox.width, hitBox.height, lvlData)) {
+            hitBox.y += airTime;
+            airTime += gravity;
+            updateXPos(xSpeed);
+        } else {
+            handleCollision(xSpeed);
+        }
+    }
+
+    private void handleCollision(float xSpeed) {
+        hitBox.y = GetYPosEntity(hitBox, airTime);
+        if (airTime > 0) {
+            resetInAir();
+        } else {
+            airTime = fallSpeedAfterCollision;
+        }
+        updateXPos(xSpeed);
+    }
+
     private void jump() {
         if (inAir)
             return;
@@ -159,7 +192,7 @@ public class Player extends Entity {
     }
 
     private void loadAnimations() {
-            BufferedImage img = LoadImg.GetSpriteAtlas(LoadImg.PLAYER_SPRITE);
+            BufferedImage img = LoadImg.getSpriteImg(LoadImg.PLAYER_SPRITE);
             animations = new BufferedImage[7][3];
             for (int j = 0; j < animations.length; j++) {
                 for (int i = 0; i < animations[j].length; i++) {

@@ -1,4 +1,4 @@
-package MenuUI;
+package ui.MenuUI;
 
 import game.Game;
 import stateOfGame.GameState;
@@ -22,7 +22,7 @@ public class Menu extends State implements StateMethods {
         loadBackgound();
     }
     private void loadBackgound() {
-        backgoundImg = LoadImg.GetSpriteAtlas(LoadImg.MENU_BACKGROUND);
+        backgoundImg = LoadImg.getSpriteImg(LoadImg.MENU_BACKGROUND);
         menuWidth = (int) (backgoundImg.getWidth() * Game.SCALE);
         menuHeight = (int) (backgoundImg.getHeight() * Game.SCALE);
         menuX = Game.GAME_WIDTH / 2 - menuWidth / 2;

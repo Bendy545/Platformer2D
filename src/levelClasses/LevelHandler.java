@@ -49,12 +49,18 @@ public class LevelHandler {
         }
     }
     private void importLevelSprite() {
-        BufferedImage img = LoadImg.GetSpriteAtlas(LoadImg.TEXTURES);
+        BufferedImage img = LoadImg.getSpriteImg(LoadImg.TEXTURES);
         levelSprite = new BufferedImage[10];
-        for (int i = 0; i < 2; i++) {
-            for (int g = 0; g < 5; g++) {
-                int index = i * 5 + g;
-                levelSprite[index] = img.getSubimage(g * 32, i * 32, 32, 32);
+        final int SPRITE_SIZE = 32;
+        final int ROWS = 2;
+        final int COLUMNS = 5;
+
+        for (int i = 0; i < ROWS; i++) {
+            for (int g = 0; g < COLUMNS; g++) {
+                int index = i * COLUMNS + g;
+                int x = g * SPRITE_SIZE;
+                int y = i * SPRITE_SIZE;
+                levelSprite[index] = img.getSubimage(x, y, SPRITE_SIZE, SPRITE_SIZE);
             }
         }
     }

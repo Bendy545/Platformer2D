@@ -1,14 +1,13 @@
-package GameCompletedUI;
+package ui.GameCompletedUI;
 
 import game.LoadImg;
 import stateOfGame.GameState;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import static game.Animations.UI.GameOverButtons.*;
+import static ui.Buttons.GameOverButtons.*;
 
 public class GameCompletedButtons {
-
     private Rectangle buttonHitbox;
     private boolean mouseOver, mousePressed;
     private int x, y, columnIndex, index;
@@ -31,7 +30,7 @@ public class GameCompletedButtons {
     }
     private void loadButtonsTexture() {
         buttonSprite = new BufferedImage[3];
-        BufferedImage img = LoadImg.GetSpriteAtlas(LoadImg.GAME_COMPLETED_BUTTONS);
+        BufferedImage img = LoadImg.getSpriteImg(LoadImg.GAME_COMPLETED_BUTTONS);
         for (int i = 0; i <buttonSprite.length; i++) {
             buttonSprite[i] = img.getSubimage(i * BUTTON_DEFAUlT_WIDTH, columnIndex * BUTTON_DEFAULT_HEIGHT, BUTTON_DEFAUlT_WIDTH, BUTTON_DEFAULT_HEIGHT);
         }

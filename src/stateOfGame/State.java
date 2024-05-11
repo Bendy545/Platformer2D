@@ -1,8 +1,8 @@
 package stateOfGame;
 
-import GameCompletedUI.GameCompletedButtons;
-import GameOverUI.GameOverButtons;
-import MenuUI.MenuButtons;
+import ui.GameCompletedUI.GameCompletedButtons;
+import ui.GameOverUI.GameOverButtons;
+import ui.MenuUI.MenuButtons;
 import game.Game;
 
 import java.awt.event.MouseEvent;

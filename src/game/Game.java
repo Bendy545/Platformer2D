@@ -3,10 +3,10 @@ package game;
 
 
 
-import GameCompletedUI.GameCompleted;
-import GameOverUI.GameOver;
+import ui.GameCompletedUI.GameCompleted;
+import ui.GameOverUI.GameOver;
 import stateOfGame.GameState;
-import MenuUI.Menu;
+import ui.MenuUI.Menu;
 import stateOfGame.Playing;
 
 import java.awt.*;
@@ -25,7 +25,7 @@ public class Game{
     private Menu menu;
     private GameOver gameOver;
     public final static int TILES_DEFAULT_SIZE = 32;
-    public final static float SCALE = 0.9f;
+    public final static float SCALE = 1.0f;
     public final static int TILES_WIDTH = 26;
     public final static int TILES_HEIGHt = 14;
     public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);

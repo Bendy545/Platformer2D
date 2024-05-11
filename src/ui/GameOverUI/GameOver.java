@@ -1,8 +1,8 @@
-package GameOverUI;
+package ui.GameOverUI;
 
 
 import game.Game;
-import static game.Animations.UI.GameOverButtons.*;
+import static ui.Buttons.GameOverButtons.*;
 
 import stateOfGame.GameState;
 import stateOfGame.State;
@@ -26,7 +26,7 @@ public class GameOver extends State implements StateMethods {
     }
 
     private void loadBackground() {
-        backgoundImg = LoadImg.GetSpriteAtlas(LoadImg.GAME_OVER_BACKGROUND);
+        backgoundImg = LoadImg.getSpriteImg(LoadImg.GAME_OVER_BACKGROUND);
         gameOverWidth = (int) (backgoundImg.getWidth() * Game.SCALE);
         gameOverHeight = (int) (backgoundImg.getHeight() * Game.SCALE);
         setGameOverPosition();
@@ -43,7 +43,7 @@ public class GameOver extends State implements StateMethods {
         for (int i = 0; i < buttons.length; i++) {
             int columnIndex = i == 0? 0 : 1;
             int x = Game.GAME_WIDTH / 2 - BUTTON_WIDTH / 2 + (i * (BUTTON_WIDTH + xOffset));
-            int y = (int) (100 * Game.SCALE);
+            int y = (int) (105 * Game.SCALE);
             buttons[i] = new GameOverButtons(x, y, columnIndex, i == 0? GameState.PLAY_AGAIN: GameState.QUIT);
         }
     }
