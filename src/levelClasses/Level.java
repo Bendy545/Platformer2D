@@ -40,4 +40,8 @@ public class Level {
     public ArrayList<Passage> getPassages() {
         return passages;
     }
+
+    public void setLvlData(int[][] lvlData) {
+        this.lvlData = lvlData;
+    }
 }

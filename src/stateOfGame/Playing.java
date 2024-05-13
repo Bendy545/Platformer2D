@@ -9,8 +9,8 @@ import java.awt.event.MouseEvent;
 
 public class Playing extends State implements StateMethods {
 
-    private static final int STARTING_X_POSITION = 40;
-    private static final int STARTING_Y_POSITION = 300;
+    private static final int STARTING_X_POSITION = 90;
+    private static final int STARTING_Y_POSITION = 500;
     private ObjectHandler objectHandler;
     private Player player;
     private LevelHandler levelHandler;
@@ -28,8 +28,8 @@ public class Playing extends State implements StateMethods {
     }
     public void resetAll() {
         player.resetAll();
-        player.setX(40);
-        player.setY(300);
+        player.setX(90);
+        player.setY(500);
 
     }
     public void resetPlayerPosition() {
@@ -42,7 +42,7 @@ public class Playing extends State implements StateMethods {
     private void initClasses() {
         levelHandler = new LevelHandler(game);
         objectHandler = new ObjectHandler(this, levelHandler);
-        player = new Player(40, 300, (int) (32 * Game.SCALE), (int) (32 * Game.SCALE));
+        player = new Player(90 , 500 , (int) (32 * Game.SCALE), (int) (32 * Game.SCALE));
         player.loadlvlData(levelHandler.getCurrentLevel().getLvlData());
     }
     public Player getPlayer() {

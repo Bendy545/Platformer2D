@@ -76,4 +76,10 @@ public class LevelHandler {
     public Level getCurrentLevel() {
         return levels.get(lvlIndex);
     }
+
+    public void setLevels(ArrayList<Level> levels) {
+        this.levels = new ArrayList<>();
+        this.levels.addAll(levels);
+    }
+
 }

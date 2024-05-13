@@ -6,12 +6,10 @@ import java.awt.geom.Rectangle2D;
 
 public class Object {
 
-
     protected int x, y, objType;
     protected Rectangle2D.Float hitbox;
 
     int xDrawOffset, yDrawOffset;
-
 
     public Object(int x, int y, int objType) {
         this.x = x;

@@ -1,8 +1,4 @@
 package game;
-
-
-
-
 import ui.GameCompletedUI.GameCompleted;
 import ui.GameOverUI.GameOver;
 import stateOfGame.GameState;
@@ -25,7 +21,7 @@ public class Game{
     private Menu menu;
     private GameOver gameOver;
     public final static int TILES_DEFAULT_SIZE = 32;
-    public final static float SCALE = 1.0f;
+    public final static float SCALE = 1.5f;
     public final static int TILES_WIDTH = 26;
     public final static int TILES_HEIGHt = 14;
     public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
@@ -109,6 +105,11 @@ public class Game{
     public GamePanel getGamePanel() {
         return gamePanel;
     }
+
+    public void setPlaying(Playing playing) {
+        this.playing = playing;
+    }
+
 
     public GameCompleted getGameCompleted() {
         return gameCompleted;

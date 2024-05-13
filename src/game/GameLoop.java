@@ -1,52 +1,63 @@
 package game;
 
 public class GameLoop implements Runnable{
+    private static final long NANOSECONDS_IN_SECOND = 1_000_000_000L;
 
-    private Game game;
-    private final int FPS_SET;
-    private final int UPS_SET;
+    private final Game game;
+    private final int targetFPS;
+    private final int targetUPS;
 
-    public GameLoop(Game game, int FPS_SET, int UPS_SET) {
+    public GameLoop(Game game, int targetFPS, int targetUPS) {
         this.game = game;
-        this.FPS_SET = FPS_SET;
-        this.UPS_SET = UPS_SET;
+        this.targetFPS = targetFPS;
+        this.targetUPS = targetUPS;
     }
 
     @Override
     public void run() {
-        double timePerFrame = 1000000000.0 / FPS_SET;
-        double timePerUpdate = 1000000000.0 / UPS_SET;
+        long nanoPerFrame = NANOSECONDS_IN_SECOND / targetFPS;
+        long nanoPerUpdate = NANOSECONDS_IN_SECOND / targetUPS;
 
-        long previousTime = System.nanoTime();
+        long lastTime = System.nanoTime();
+        long timer = System.currentTimeMillis();
+        double deltaU = 0;
+        double deltaF = 0;
         int frames = 0;
         int updates = 0;
-        long lastCheck = System.currentTimeMillis();
-       double deltaU = 0;
-       double deltaF = 0;
-        while (true) {
 
-            long currentTime = System.nanoTime();
-            long elapsedTime = currentTime - previousTime;
-            deltaU += elapsedTime / timePerUpdate;
-            deltaF += elapsedTime / timePerFrame;
-            previousTime = currentTime;
-            if (deltaU >= 1) {
+        while (true) {
+            long now = System.nanoTime();
+            long elapsed = now - lastTime;
+            deltaU += elapsed / (double) nanoPerUpdate;
+            deltaF += elapsed / (double) nanoPerFrame;
+            lastTime = now;
+
+            if (deltaU >= 1.0) {
                 game.update();
                 updates++;
                 deltaU--;
             }
 
-            if (deltaF >= 1) {
+            if (deltaF >= 1.0) {
                 game.getGamePanel().repaint();
                 frames++;
                 deltaF--;
             }
 
-            if(System.currentTimeMillis() - lastCheck >= 1000) {
-                lastCheck = System.currentTimeMillis();
+            if (System.currentTimeMillis() - timer > 1000) {
+                timer += 1000;
                 printFPSAndUPS(frames, updates);
                 frames = 0;
                 updates = 0;
+            }
+
+            long sleepTime = (lastTime - System.nanoTime() + nanoPerFrame) / NANOSECONDS_IN_SECOND;
+            if (sleepTime > 0) {
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -54,6 +65,4 @@ public class GameLoop implements Runnable{
     private void printFPSAndUPS(int frames, int updates) {
         System.out.println("FPS: " + frames + ", UPS: " + updates);
     }
-
-
 }
