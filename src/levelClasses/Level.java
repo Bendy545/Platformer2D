@@ -40,5 +40,4 @@ public class Level {
     public ArrayList<Passage> getPassages() {
         return passages;
     }
-
 }
