@@ -76,9 +76,4 @@ public class LevelHandler {
         return levels.get(lvlIndex);
     }
 
-    public void setLevels(ArrayList<Level> levels) {
-        this.levels = new ArrayList<>();
-        this.levels.addAll(levels);
-    }
-
 }

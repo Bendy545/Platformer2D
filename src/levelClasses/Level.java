@@ -41,7 +41,4 @@ public class Level {
         return passages;
     }
 
-    public void setLvlData(int[][] lvlData) {
-        this.lvlData = lvlData;
-    }
 }
