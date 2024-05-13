@@ -32,13 +32,11 @@ public class GameOver extends State implements StateMethods {
         setGameOverPosition();
     }
     private void setGameOverPosition() {
-        gameOverX = Game.GAME_WIDTH / 2 + 60 - gameOverWidth / 2;
+        gameOverX = Game.GAME_WIDTH / 2 + 90 - gameOverWidth / 2;
         gameOverY = (int) (10 * Game.SCALE);
     }
     private void loadButtons() {
         int xOffset = (int) (20 * Game.SCALE);
-
-
         buttons = new GameOverButtons[2];
         for (int i = 0; i < buttons.length; i++) {
             int columnIndex = i == 0? 0 : 1;

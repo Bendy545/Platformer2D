@@ -34,7 +34,7 @@ public class GameCompleted extends State implements StateMethods {
         gameGameCompletedY = (int) (10 * Game.SCALE);
     }
     private void loadButtons() {
-        int x2Offset = (int) (-170 * Game.SCALE);
+        int x2Offset = (int) (-190 * Game.SCALE);
         int xOffset = (int) (250 * Game.SCALE);
         buttons = new GameCompletedButtons[2];
         for (int i = 0; i < buttons.length; i++) {

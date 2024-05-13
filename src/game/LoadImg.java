@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public class LoadImg {
+    public static final String BACKGROUND_IMAGE = "objects&textures/backGroundImage.png";
     public static final String GAME_COMPLETED_BUTTONS = "UITextures/GameCompletedButtons.png";
     public static final String GAMEOVER_BUTTONS = "UITextures/GameOverButtons.png";
     public static final String PASSAGE = "objects&textures/Passage.png";
