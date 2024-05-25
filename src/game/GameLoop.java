@@ -13,6 +13,9 @@ public class GameLoop implements Runnable{
         this.targetUPS = targetUPS;
     }
 
+    /**
+     * Runs the game loop, handling the timing for updates and rendering based on the target FPS and UPS.
+     */
     @Override
     public void run() {
         long nanoPerFrame = NANOSECONDS_IN_SECOND / targetFPS;

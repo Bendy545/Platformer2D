@@ -43,10 +43,18 @@ public class Game{
         gameCompleted = new GameCompleted(this);
 
     }
+
+    /**
+     * Starts the game loop in a new thread.
+     */
     private void startGameLoop() {
         gameThread = new Thread(gameLoop);
         gameThread.start();
     }
+
+    /**
+     * Updates the game state based on the current GameState.
+     */
     public void update() {
         switch (GameState.state) {
             case MENU:
@@ -69,6 +77,12 @@ public class Game{
                 break;
         }
     }
+
+    /**
+     * Renders the current game state.
+     *
+     * @param g
+     */
     public void render(Graphics g) {
 
         switch (GameState.state) {

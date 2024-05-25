@@ -24,6 +24,12 @@ public class ObjectHandler {
         loadImgs();
         loadObject(playing.getLevelHandler().getCurrentLevel());
     }
+
+    /**
+     * Checks if the player intersects with any passage, and if so, loads the next level and resets the player position.
+     *
+     * @param p
+     */
     public void checkPassageHit(Player p) {
         for (Passage passage : passages) {
             if (passage.getHitbox().intersects(p.getHitBox())) {
@@ -32,6 +38,12 @@ public class ObjectHandler {
             }
         }
     }
+
+    /**
+     * Checks if the player intersects with any spike, and if so, sets the game state to GAME_OVER.
+     *
+     * @param p
+     */
     public void checkSpikeHit(Player p) {
         for (Spike s : spikes) {
             if (s.getHitbox().intersects(p.getHitBox())) {
@@ -39,10 +51,20 @@ public class ObjectHandler {
             }
         }
     }
+
+    /**
+     * Loads images for spikes and passages from the resources.
+     */
     public void loadImgs() {
         spikeImg = LoadImg.getSpriteImg(SPIKES);
         passageImg = LoadImg.getSpriteImg(PASSAGE);
     }
+
+    /**
+     * Loads the spikes and passages from the specified level.
+     *
+     * @param newLevel
+     */
     public void loadObject(Level newLevel) {
         spikes = newLevel.getSpikes();
         passages = newLevel.getPassages();
@@ -60,5 +82,12 @@ public class ObjectHandler {
     public void draw(Graphics g) {
         drawSpikes(g);
         drawPassages(g);
+    }
+    public BufferedImage getSpikeImg() {
+        return spikeImg;
+    }
+
+    public BufferedImage getPassageImg() {
+        return passageImg;
     }
 }

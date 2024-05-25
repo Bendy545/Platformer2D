@@ -40,6 +40,12 @@ public class LoadImg {
     public static final String GAME_OVER_BACKGROUND = "UITextures/GameOver.png";
     public static final String GAME_COMPLETED_BACKGROUND = "UITextures/GameCompleted.png";
 
+    /**
+     * Loads and returns a BufferedImage from a given file name.
+     *
+     * @param fileName
+     * @return
+     */
     public static BufferedImage getSpriteImg(String fileName) {
         try (InputStream is = LoadImg.class.getResourceAsStream("/" + fileName)) {
             if (is == null) {
@@ -51,6 +57,11 @@ public class LoadImg {
         }
     }
 
+    /**
+     * Loads all level images from the 'levels' directory and returns them as an array of BufferedImages.
+     *
+     * @return an array of BufferedImage objects representing all level images
+     */
     public static BufferedImage[] getAllLevels() {
         URL url = LoadImg.class.getResource("/levels");
         File file = null;
@@ -71,6 +82,13 @@ public class LoadImg {
         }
         return imgs;
     }
+
+    /**
+     * Extracts level data from a BufferedImage where each pixel's red value represents a tile value.
+     *
+     * @param img
+     * @return
+     */
     public static int[][] GetLevelData(BufferedImage img) {
         int width = img.getWidth();
         int height = img.getHeight();
@@ -82,17 +100,47 @@ public class LoadImg {
         }
         return levelData;
     }
+
+    /**
+     * Extracts the level value from a pixel's RGB value. The red component represents the value.
+     *
+     * @param rgb
+     * @return
+     */
     private static int extractLevelValue(int rgb) {
         Color color = new Color(rgb);
         int value = color.getRed();
         return (value >= 10) ? 0 : value;
     }
+
+    /**
+     * Detects and returns an ArrayList of Spike objects in a level image based on the blue color value.
+     *
+     * @param img
+     * @return
+     */
     public static ArrayList<Spike> getSpikes(BufferedImage img) {
         return detectObjects(img, SPIKE);
     }
+
+    /**
+     * Detects and returns an ArrayList of Passage objects in a level image based on the blue color value.
+     *
+     * @param img
+     * @return
+     */
     public static ArrayList<Passage> getPassages(BufferedImage img) {
         return detectObjects(img, PASS);
     }
+
+    /**
+     * Generic method to detect objects in a level image based on the blue color value.
+     *
+     * @param img
+     * @param targetColor
+     * @return
+     * @param <T>
+     */
     private static <T extends Object> ArrayList<T> detectObjects(BufferedImage img, int targetColor) {
         ArrayList<T> objects = new ArrayList<>();
         int tileSize = Game.TILES_SIZE;

@@ -21,6 +21,12 @@ public class LevelHandler {
         levels = new ArrayList<>();
         buildAllLevels();
     }
+
+    /**
+     * Sets the current level index to the specified value.
+     *
+     * @param index
+     */
     public void setCurrentLevel(int index) {
         if (index >= 0 && index < levels.size()) {
             lvlIndex = index;
@@ -29,6 +35,11 @@ public class LevelHandler {
     public void updateObjectHandler(Playing playing) {
         playing.getObjectHandler().loadObject(getCurrentLevel());
     }
+
+    /**
+     * Loads the next level, updating the player and object handler.
+     * If the last level is reached, sets the game state to GAME_COMPLETED.
+     */
     public void loadNextLevel() {
 
         lvlIndex++;
@@ -41,12 +52,19 @@ public class LevelHandler {
         updateObjectHandler(game.getPlaying());
     }
 
-    private void buildAllLevels() {
+    /**
+     * Builds all levels from the level images.
+     */
+    public void buildAllLevels() {
         BufferedImage[] allLevels = LoadImg.getAllLevels();
         for (BufferedImage img : allLevels) {
             levels.add(new Level(img));
         }
     }
+
+    /**
+     * Imports level sprites from the textures image.
+     */
     private void importLevelSprite() {
         BufferedImage img = LoadImg.getSpriteImg(LoadImg.TEXTURES);
         levelSprite = new BufferedImage[10];
@@ -76,4 +94,11 @@ public class LevelHandler {
         return levels.get(lvlIndex);
     }
 
+    public int getLvlIndex() {
+        return lvlIndex;
+    }
+
+    public ArrayList<Level> getLevels() {
+        return levels;
+    }
 }

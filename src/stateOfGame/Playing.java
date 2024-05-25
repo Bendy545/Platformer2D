@@ -22,10 +22,18 @@ public class Playing extends State implements StateMethods {
         initClasses();
         loadFirstLevel();
     }
+
+    /**
+     * Loads the next level and resets all relevant entities.
+     */
     public void loadNextLevel() {
         resetAll();
         levelHandler.loadNextLevel();
     }
+
+    /**
+     * Resets the player and other game entities to their initial states.
+     */
     public void resetAll() {
         player.resetAll();
         player.setX(90);
@@ -48,6 +56,10 @@ public class Playing extends State implements StateMethods {
     public Player getPlayer() {
         return player;
     }
+
+    /**
+     * Updates the state of the game, including the player, level, and objects.
+     */
     @Override
     public void update() {
         if (GameState.state == GameState.PLAYING) {
@@ -58,6 +70,11 @@ public class Playing extends State implements StateMethods {
         }
     }
 
+    /**
+     * Draws the current state of the game, including the player, level, and objects.
+     *
+     * @param g
+     */
     @Override
     public void draw(Graphics g) {
         levelHandler.draw(g);

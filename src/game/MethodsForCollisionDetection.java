@@ -6,6 +6,16 @@ import java.awt.geom.Rectangle2D;
 
 public class MethodsForCollisionDetection {
 
+    /**
+     * Checks if an entity can move to the specified position without colliding with solid tiles.
+     *
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     * @param lvlData
+     * @return
+     */
     public static boolean CanMoveHere(float x, float y, float width, float height, int[][] lvlData) {
         boolean isSolidAtCurrentPosition = IsSolid(x, y, lvlData);
         boolean isSolidAtTopRight = IsSolid(x + width, y, lvlData);
@@ -14,6 +24,14 @@ public class MethodsForCollisionDetection {
         return !(isSolidAtCurrentPosition || isSolidAtTopRight || isSolidAtBottomLeft || isSolidAtBottomRight);
     }
 
+    /**
+     * Checks if a specific position in the level data is solid.
+     *
+     * @param x
+     * @param y
+     * @param lvlData
+     * @return
+     */
     private static boolean IsSolid(float x, float y, int[][] lvlData) {
         boolean isOutsideBounds = x < 0 || x >= Game.GAME_WIDTH || y < 0 || y >= Game.GAME_HEIGHT;
         if (isOutsideBounds) {
@@ -24,6 +42,14 @@ public class MethodsForCollisionDetection {
         int value = (xIndex >= 0 && xIndex < lvlData[0].length && yIndex >= 0 && yIndex < lvlData.length) ? lvlData[yIndex][xIndex] : -1;
         return value < 0 || value >= 10 || value != 4;
     }
+
+    /**
+     * Calculates the x-coordinate of the wall entity based on the entity's hitbox and x-speed.
+     *
+     * @param hitbox
+     * @param xSpeed
+     * @return
+     */
     public static float GetWallEntity(Rectangle2D.Float hitbox, float xSpeed) {
         int currentTile = getCurrentTile(hitbox);
         int tileXPos = getTileXPosition(currentTile);
@@ -51,6 +77,14 @@ public class MethodsForCollisionDetection {
         }
         return true;
     }
+
+    /**
+     * Calculates the y-coordinate position of the entity when it is airborne based on its hitbox and air time.
+     *
+     * @param hitbox
+     * @param airTime
+     * @return
+     */
     public static float GetYPosEntity(Rectangle2D.Float hitbox, float airTime) {
         final int tileSize = Game.TILES_SIZE;
         int tileYPos = (int) (hitbox.y / tileSize) * tileSize;

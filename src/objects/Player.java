@@ -34,6 +34,10 @@ public class Player extends Entity {
         loadAnimations();
         initHitbox(x, y, (int)(16 * Game.SCALE), (int)(30 * Game.SCALE));
     }
+
+    /**
+     * Updates the player's position, animation tick, and animation state.
+     */
     public void update() {
         updatePos();
         updateAnimationTick();
@@ -43,8 +47,10 @@ public class Player extends Entity {
         g.drawImage(animations[playerAction][animIndex], (int) (hitBox.x - xDrawOffset), (int) (hitBox.y - yDrawOffset), width, height, null);
     }
 
+    /**
+     * Updates the animation tick and handles animation frame progression.
+     */
     private void updateAnimationTick() {
-
         animTick++;
         if (animTick >= animSpeed) {
             animTick = 0;
@@ -56,8 +62,10 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Sets the player's animation based on the current state and actions.
+     */
     private void setAnimation() {
-
         int startAni = playerAction;
         if (attacking) {
             if (left) {
@@ -95,6 +103,10 @@ public class Player extends Entity {
         animTick = 0;
         animIndex = 0;
     }
+
+    /**
+     * Updates the player's position based on current actions and physics.
+     */
     private void updatePos() {
         moving = false;
 
